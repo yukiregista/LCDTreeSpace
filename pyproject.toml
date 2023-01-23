@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "lcdtreespace"
+version = "0.0.1"
+authors = [
+  { name="Yuki Takazawa", email="yuki-takazawa@g.ecc.u-tokyo.ac.jp" },
+]
+description = "Log-concave density estimation on tree space."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["numpy", "pandas", "scipy", "matplotlib", "scikit-learn"]
+
+[project.urls]
+"Homepage" = "https://github.com/yukiregista/LCDTreeSpace"
+#"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+
+#[tool.setuptools.packages.find]
+#where = ["lcdtreespace/data"]
+#exclude = ["simulate"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["lcdtreespace"]
+
+[tool.setuptools.package-data]
+"lcdtreespace.data" = ["*.csv"]
