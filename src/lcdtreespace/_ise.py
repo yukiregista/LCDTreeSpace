@@ -13,6 +13,31 @@ from scipy.integrate import quad, dblquad
 
 
 def ise_1dim(true_density, estimate_density, epsabs=1e-4):
+    """Computation of integrated squared error (ise) in 1dim tree space.
+
+    Parameters
+    ----------
+    true_density : density object
+    estimate_density : density object
+    epsabs : float
+        Allowed error for computation of ise.
+        Defaults to 1e-4.
+
+    Notes
+    -----
+    Both ``true_density'' and ``estimate_density'' should be one of the followings:
+        - :py:class:`normal_1dim`
+        - :py:class:`normal_bend_1dim`
+        - :py:class:`coalescent_1dim`
+        - :py:class:`exponential_1dim`
+        - :py:class:`kernel_density_estimate_1dim`
+        - :py:class:`logconcave_density_estimate_1dim`
+
+    Returns
+    -------
+        ise : Integrated squared error
+        err : Error of ise.
+    """
     def true_v_estimate(x,cell):
         return (true_density.pdf(x,cell) - estimate_density.pdf(x,cell))**2
     ise = 0; err = 0;
@@ -22,6 +47,29 @@ def ise_1dim(true_density, estimate_density, epsabs=1e-4):
     return ise, err
 
 def ise_2dim(true_density, estimate_density,epsabs=1e-4):
+    """Computation of integrated squared error (ise) in 2dim tree space.
+
+    Parameters
+    ----------
+    true_density : density object
+    estimate_density : density object
+    epsabs : float
+        Allowed error for computation of ise.
+        Defaults to 1e-4.
+
+    Notes
+    -----
+    Both ``true_density'' and ``estimate_density'' should be one of the followings:
+        - :py:class:`normal_centered_2dim`
+        - :py:class:`normal_uncentered_2dim`
+        - :py:class:`kernel_density_estimate_2dim`
+        - :py:class:`logconcave_density_estimate_2dim`
+
+    Returns
+    -------
+        ise : Integrated squared error
+        err : Error of ise.
+    """
     cells = tuple_2dcells()
     def true_v_estimate(x1,x2,cell0,cell1):
         return (true_density.pdf(x1,x2,cell0, cell1) - estimate_density.pdf(x1,x2,cell0,cell1))**2

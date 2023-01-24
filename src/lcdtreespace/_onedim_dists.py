@@ -21,11 +21,36 @@ class _coalescent_1dim(stats.rv_continuous):
         return cx
 
 class coalescent_1dim():
+    """ Density object corresponding to simple coalescent process.
+
+    Attributes
+    ----------
+    T : float
+        The length of internal edge of the species tree.
+    """
     def __init__(self,T):
+        """
+        Parameters
+        ----------
+        T : float
+            The length of internal edge of the species tree.
+        """
         self.T = T
         self.rv = _coalescent_1dim()
 
     def pdf(self,x,cell):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x : coordinate of the point.
+        cell : orthant of the point.
+
+        Returns
+        -------
+        float
+            Density at the point ``x`` in the orthant ``cell``.
+        """
         T = self.T
         if x==0:
             px = self.rv._pdf(x, T=self.T)
@@ -35,6 +60,22 @@ class coalescent_1dim():
             px = self.rv._pdf(-x, T=self.T)/2
         return px
     def sample(self,size,seed=None):
+        """ Sample from the density.
+
+        parameters
+        ----------
+        size : int
+            sample size.
+        seed : int
+            random seed.
+
+        Returns
+        -------
+        x : numpy.ndarray
+            Coordinates of sample points.
+        ort : numpy.ndarray
+            Orthants of sample points.
+        """
         if seed is not None:
             np.random.seed(seed)
         x = self.rv.rvs(size=size, T=self.T)
@@ -72,13 +113,50 @@ class _normal_bend_1dim(stats.rv_continuous):
 
 
 class normal_bend_1dim():
+    """ normal density object that bends at the origin on 1dim tree space or more general space of k-spiders.
+
+    This density corresponds to the transition density of the Brownian motion on k-spider.
+
+    Attributes
+    ----------
+    mu : float
+        Position of the starting point for Brownian motion.
+    sigma : float
+        Variance-like parameter.
+    k : int
+        Number of orthants. (Number of 'spiders'.)
+        In case of one dimensional tree space, ``k`` should be 3.
+    """
     def __init__(self,mu,sigma,k):
+        """
+        Parameters
+        ----------
+        mu : float
+            Position of the starting point for Brownian motion.
+        sigma : float
+            Variance-like parameter.
+        k : int
+            Number of orthants. (Number of 'spiders'.)
+            In case of one dimensional tree space, ``k`` should be 3.
+        """
         self.mu = mu
         self.sigma = sigma
         self.k = k
         self.rv = _normal_bend_1dim()
 
     def pdf(self, x, cell):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x : coordinate of the point.
+        cell : orthant of the point.
+
+        Returns
+        -------
+        float
+            Density at the point ``x`` in the orthant ``cell``.
+        """
         mu = self.mu; sigma = self.sigma; k = self.k
         if x==0:
             px = self.rv._pdf(x,mu,sigma,k)
@@ -88,6 +166,22 @@ class normal_bend_1dim():
             px = self.rv._pdf(-x,mu,sigma,k)/(k-1)
         return px
     def sample(self,size,seed=None):
+        """ Sample from the density.
+
+        parameters
+        ----------
+        size : int
+            sample size.
+        seed : int
+            random seed.
+
+        Returns
+        -------
+        x : numpy.ndarray
+            Coordinates of sample points.
+        ort : numpy.ndarray
+            Orthants of sample points.
+        """
         if seed is not None:
             np.random.seed(seed)
         x = self.rv.rvs(size=size, mu=self.mu, sigma = self.sigma, k = self.k)
@@ -129,11 +223,42 @@ class _normal_1dim(stats.rv_continuous):
 
 
 class normal_1dim():
+    """ normal-like density object in 1dim tree space.
+
+    The density is proportional to exp(-d(x,mu)^2/sigma^2) for x in supported orthants.
+
+    Attributes
+    ----------
+    mu : float
+        Position of the center.
+    sigma : float
+        Variance-like parameter.
+    """
     def __init__(self, mu, sigma):
+        """
+        Parameters
+        ----------
+        mu : float
+            Position of the center.
+        sigma : float
+            Variance-like parameter.
+        """
         self.mu = mu
         self.sigma = sigma
         self.rv = _normal_1dim()
     def pdf(self, x, cell):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x : coordinate of the point.
+        cell : orthant of the point.
+
+        Returns
+        -------
+        float
+            Density at the point ``x`` in the orthant ``cell``.
+        """
         plus = norm.cdf(-self.mu, loc=0, scale=self.sigma)
         normalize_factor = 1.0/(2.0*np.pi*self.sigma**2)**(1/2)
         normalize_factor = normalize_factor/(1+plus)
@@ -143,6 +268,22 @@ class normal_1dim():
             px = normalize_factor * np.exp(-(-x-self.mu)**2/(2*self.sigma**2))
         return px
     def sample(self,size, seed=None):
+        """ Sample from the density.
+
+        parameters
+        ----------
+        size : int
+            sample size.
+        seed : int
+            random seed.
+
+        Returns
+        -------
+        x : numpy.ndarray
+            Coordinates of sample points.
+        ort : numpy.ndarray
+            Orthants of sample points.
+        """
         if seed is not None:
             np.random.seed(seed)
         x = self.rv.rvs(size=size, mu=self.mu, sigma=self.sigma)
@@ -182,11 +323,41 @@ class _exponential_1dim(stats.rv_continuous):
         return cx
 
 class exponential_1dim():
+    """
+    Exponential-like density in 1dim tree space.
+
+    Attributes
+    ----------
+    mu : float
+        Location parameter.
+    lam : float
+        Rate parameter
+    """
     def __init__(self, mu, lam):
+        """
+        Parameters
+        ----------
+        mu : float
+            Location parameter.
+        lam : float
+            Rate parameter
+        """
         self.mu = mu
         self.lam = lam
         self.rv = _exponential_1dim()
     def pdf(self, x, cell):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x : coordinate of the point.
+        cell : orthant of the point.
+
+        Returns
+        -------
+        float
+            Density at the point ``x`` in the orthant ``cell``.
+        """
         normalize_factor = 1 + np.exp(-self.lam * self.mu)
         if cell == 0:
             if x<=1:
@@ -197,6 +368,22 @@ class exponential_1dim():
             px = self.lam * np.exp(-self.lam * (self.mu+x)) / normalize_factor
         return px
     def sample(self, size, seed=None):
+        """ Sample from the density.
+
+        parameters
+        ----------
+        size : int
+            sample size.
+        seed : int
+            random seed.
+
+        Returns
+        -------
+        x : numpy.ndarray
+            Coordinates of sample points.
+        ort : numpy.ndarray
+            Orthants of sample points.
+        """
         if seed is not None:
             np.random.seed(seed)
         x = self.rv.rvs(size=size, mu=self.mu, lam=self.lam)

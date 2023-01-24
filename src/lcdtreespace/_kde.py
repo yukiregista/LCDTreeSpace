@@ -160,7 +160,15 @@ def _kernel(x, cell, sample_coord1, sample_coord2, sample_angle, start_index, ce
 
 
 class kernel_density_estimate_2dim():
+    """Kernel density estimate object in 2dim tree space.
+    """
     def __init__(self,X):
+        """
+        Parameters
+        ----------
+        X : pandas.DataFrame
+            Sample points. See :py:func:`lcmle_2dim` for the required format.
+        """
         self.sample_coord1 = X['x1'].values
         self.sample_coord2 = X['x2'].values
         self.sample_angle = X['angle'].values
@@ -172,6 +180,25 @@ class kernel_density_estimate_2dim():
         self.bhv_c = _bhv_exact(self.sample_coord1,self.sample_coord2, self.bw)
 
     def pdf(self,x1,x2,cell0,cell1):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x1 : float
+            First coordinate.
+        x2 : float
+            Second coordinate.
+        cell0 : int
+            First orthant.
+        cell1 : int
+            Second orthant.
+            cell1 should have a larger value than cell0.
+
+        Returns
+        -------
+        float
+            Density at the point ``(x1,x2)`` in the orthant ``(cell0, cell1)``.
+        """
         cell = (cell0, cell1)
         x = np.array([x1,x2])
         estimated_density = _kernel(x, cell, self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index, self.cells, self.lenmat, bw=self.bw, bhvc = self.bhv_c)
@@ -191,13 +218,41 @@ def _create_distance_mat_1dim(x, ort):
 
 
 class kernel_density_estimate_1dim():
+    """Kernel density estimate object in 1dim tree space or more general space of k-spider.
+    """
     def __init__(self, x, ort, n_ort):
+        """
+        Parameters
+        ----------
+        x : numpy.ndarray
+            coordinates of sample points.
+        ort : numpy.ndarray
+            orthants that sample points belong to.
+            Should have same length as ``x``.
+        n_ort : int
+            Number of orthants. (Number of 'spiders'.)
+            In case of one dimensional tree space, ``n_ort`` should be 3.
+        """
         self.x = x
         self.ort =  ort
         self.n_ort = n_ort
         self.Dmat = _create_distance_mat_1dim(x, ort)
         self.bw = _bw_nn(self.Dmat)
     def pdf(self, x, cell):
+        """ Returns the value of the density value at a point.
+
+        Currently, it only supports when ``n_ort`` = 3.
+
+        Parameters
+        ----------
+        x : coordinate of the point.
+        cell : orthant of the point.
+
+        Returns
+        -------
+        float
+            Density at the point ``x`` in the orthant ``cell``.
+        """
         if cell == 0:
             dist_x0 = np.abs(self.x[self.ort==0]-x)
             dist_x1 = self.x[self.ort==1]+x

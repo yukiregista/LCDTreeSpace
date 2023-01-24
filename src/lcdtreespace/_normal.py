@@ -8,12 +8,45 @@ from ._kde import _geodesic_dist2d2
 
 
 class normal_centered_2dim():
+    """ Centered normal-like density in two dimensional tree space.
+
+    Attributes
+    ----------
+    cells : list of lists
+        supported orthants.
+    sigma : float
+        variance-like parameter of the density.
+        The density is proportional to exp(-d(x,0)^2/sigma^2) for x in supported orthants.
+    """
     def __init__(self,cells,sigma):
+        """
+        parameters
+        ----------
+        cells : list of lists
+            supported orthants.
+        sigma : float
+            variance-like parameter of the density.
+            The density is proportional to exp(-d(x,0)^2) for x in supported orthants.
+        """
         self.n_cell = len(cells)
         self.cells = np.array(cells)
         self.tuple_cells = [tuple(item) for item in self.cells]
         self.sigma = sigma
     def sample(self,size,seed=None):
+        """ Sample from the density.
+
+        parameters
+        ----------
+        size : int
+            sample size.
+        seed : int
+            random seed.
+
+        Returns
+        -------
+        pandas.DataFrame
+            DataFrame containing sample points.
+        """
         if seed is not None:
             np.random.seed(seed)
         x_d = np.abs(np.random.multivariate_normal(mean=np.zeros(2),cov=np.eye(2) * self.sigma, size=size))
@@ -28,13 +61,55 @@ class normal_centered_2dim():
         X = X.iloc[sort_ind].reset_index(drop=True)
         return X.astype({"edge1":"int32", "edge2":"int32"})
     def pdf(self, x1,x2,cell0,cell1):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x1 : float
+            First coordinate.
+        x2 : float
+            Second coordinate.
+        cell0 : int
+            First orthant.
+        cell1 : int
+            Second orthant.
+            cell1 should have a larger value than cell0.
+
+        Returns
+        -------
+        float
+            Density at the point (x1,x2) in the orthant (cell0, cell1).
+        """
         if (cell0, cell1) not in self.tuple_cells:
             return 0
         else:
             return multivariate_normal(mean=np.zeros(2), cov=np.eye(2)*self.sigma).pdf(np.array([x1,x2]))*4/self.n_cell
 
 class normal_uncentered_2dim():
+    """ Uncentered normal-like density in two dimensional tree space.
+
+    Attributes
+    ----------
+    cell : list of length 2
+        The orthant to which the center belongs.
+    mu : float
+        The coordinate of the center point.
+    sigma : float
+        variance-like parameter of the density.
+        The density is proportional to exp(-d(x,0)^2) for x in supported orthants.
+    """
     def __init__(self, cell, mu, sigma):
+        """
+        Parameters
+        ----------
+        cell : list of length 2
+            The orthant to which the center belongs.
+        mu : float
+            The coordinate of the center point.
+        sigma : float
+            variance-like parameter of the density.
+            The density is proportional to exp(-d(x,0)^2) for x in supported orthants.
+        """
         if cell[0] != cell[1]:
             self.cell = cell
             self.mu = mu
@@ -51,6 +126,20 @@ class normal_uncentered_2dim():
             #self.norm = self.norm/np.sum(self.norm)
             self.prop = np.array([self.c_a, 2 * self.c_b1, 2 * self.c_b2, 4 * self.c_c, 6 * self.c_d])/self.all
     def sample(self, size, seed=None):
+        """ Sample from the density.
+
+        parameters
+        ----------
+        size : int
+            sample size.
+        seed : int
+            random seed.
+
+        Returns
+        -------
+        pandas.DataFrame
+            DataFrame containing sample points.
+        """
         if seed is not None:
             np.random.seed(seed)
         labels = np.random.multinomial(n=size, pvals=self.prop)
@@ -113,6 +202,25 @@ class normal_uncentered_2dim():
 
         return X.astype({"edge1":"int32", "edge2":"int32"})
     def pdf(self, x1, x2, cell0, cell1):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x1 : float
+            First coordinate.
+        x2 : float
+            Second coordinate.
+        cell0 : int
+            First orthant.
+        cell1 : int
+            Second orthant.
+            cell1 should have a larger value than cell0.
+
+        Returns
+        -------
+        float
+            Density at the point (x1,x2) in the orthant (cell0, cell1).
+        """
         # cannot derive in general case: can only be valid when x1 or x2 strictly equals to zero
         if self.mu[0]==0:
             ind = 0
@@ -124,36 +232,6 @@ class normal_uncentered_2dim():
         #px_unnormalized = np.exp(-geodesic_distance_2d(center, point)**2/(2*self.sigma**2))
         dd = _geodesic_dist2d2(self.cell, self.mu[0], self.mu[1], self.alpha, cell, x1, x2, np.arctan2(x2,x1), tuple_2dcells(), b_to_b_lenmat())
         px_unnormalized = np.exp(-dd**2/(2 * self.sigma**2))
-        '''
-        b1_cells = [set([ self.cell[0] , v ]) for v in find_neighbors(self.cell[0]) if v != self.cell[1]]
-        b2_cells = [set([ v, self.cell[1] ]) for v in find_neighbors(self.cell[1]) if v != self.cell[0]]
-        c1_first = [v for v in find_neighbors(self.cell[0]) if v != self.cell[1]]
-        c2_first = [v for v in find_neighbors(self.cell[1]) if v != self.cell[0]]
-        c1_cells = [set([ v, c1_first[0] ]) for v in find_neighbors(c1_first[0]) if v != self.cell[0]] \
-        + [set([ v, c1_first[1] ]) for v in find_neighbors(c1_first[1]) if v != self.cell[0]]
-        c2_cells = [[ c2_first[0] , v ] for v in find_neighbors(c2_first[0]) if v != self.cell[1]] \
-        + [set([ c2_first[1] , v ]) for v in find_neighbors(c2_first[1]) if v != self.cell[1]]
-        if cell == self.cell:
-            const = self.c_a
-        elif set(cell) in b1_cells:
-            const = self.c_b1
-            print('b1')
-        elif set(cell) in b2_cells:
-            const = self.c_b2
-            print('b2')
-        elif set(cell) in c1_cells:
-            if ind==0:
-                const = self.c_c
-                print('c1')
-            else:
-                const = self.c_d
-        elif set(cell) in c2_cells:
-            if ind==1:
-                const = self.c_c
-            else:
-                const = self.c_d
-                print('c2')
-        '''
         return px_unnormalized / self.all
 
 

@@ -93,6 +93,22 @@ def _calc_integ(y, sample_coord1, sample_coord2, sample_angle, start_index,
     return integ
 
 def calc_integ(y,X):
+    """Calculates integral of exponential of least concave function.
+
+    If ``y`` is the log-density for sample points ``X``, then the integral should be equal to one.
+
+    Parameters
+    ----------
+    y : numpy.ndarray
+        Function value of the least concave function.
+    X : pandas.DataFrame
+        Sample points. See :py:func:`lcmle_2dim` for the required format.
+
+    Returns
+    -------
+    float
+        Integral of exponential of least concave function.
+    """
     # assuming X is sorted
     sample_coord1 = X['x1'].values
     sample_coord2 = X['x2'].values
@@ -339,6 +355,40 @@ class _y_hist():
 
 
 def lcmle_2dim(X, initialization = 'random', random_seed = None, weight = "uniform",print_objective=False,history=False ):
+    """Calculates two dimensional log-concave m.l.e.
+
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        Contains sample points. It should have following columns:
+
+            - edge1, edge2 : integer indicating the edge
+            - x1, x2 : coordinates of sample points
+            - angle : arctan(x2/x1)
+        It should be sorted by orthants before conducting clustering.
+    initialization : str
+        Choice for initialization. Should be one of the followings:
+        - 'random' : Random initialization (gaussian)
+        - 'given' : Specified initial value. X should have column named 'y' for that specified init value.
+    random_seed: float
+        Random seed for random initialization.
+    weight : str or numpy.ndarray
+        Weight for each sample point. Should be one of the followings:
+        - "uniform" : gives uniform weights
+        - numpy.ndarray : the value of weight
+        If manually provided, it should sum up to one.
+    print_objective : bool
+        Whether to show objective values of each iteration.
+    history : bool
+        Whether to return historical ``y`` values.
+
+    Returns
+    -------
+    y : numpy.ndarray
+        Optimal parameter (log-density).
+    y_hist : list of numpy.ndarray
+        History of y values. Only returns it when ``history'' is True.
+    """
     # calculates two dimensional log-concave m.l.e.
     # INPUT:
     ## X : dataframe containing sample points. It should have following columns:

@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to lcdtreespace's documentation!
+Welcome to LCDTreeSpace's documentation!
 ========================================
 
 .. toctree::
@@ -12,13 +12,29 @@ Welcome to lcdtreespace's documentation!
 
 Installation
 ------------
-``pip install https://github.com/yukiregista/LCDTreeSpace.git``
+.. code-block::
+
+  pip install https://github.com/yukiregista/LCDTreeSpace.git
+
+Import
+------
+
+.. highlight:: python
+.. code-block:: python
+
+  import lcdtreespace as lcd
+
+Basic Usage
+-----------
+
+See example Jupyter Notebooks at `github <https://github.com/yukiregista/LCDTreeSpace.git>`_.
+
 
 API
 ------
 List of functions and classes available.
 
 .. toctree::
-  :maxdepth: 1
+  :maxdepth: 2
 
   lcdtreespace2

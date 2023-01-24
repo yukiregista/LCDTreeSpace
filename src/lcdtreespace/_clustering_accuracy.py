@@ -7,6 +7,26 @@ def _dist_perm(cm):
     return s-cm
 
 def clustering_accuracy(true_labels, estimate_labels):
+    """ Measures accuracy score of clustering.
+
+    This function searches optimal matching of true_labels and estimate_labels, and
+    produce the best accuracy score.
+
+    Parameters
+    ----------
+    true_labels : numpy.ndarray
+        True cluster labels
+    estimate_labels : numpy.ndarray
+        Estimated cluster labels
+
+    Returns
+    -------
+    accuracy : float
+        Accuracy score.
+    indices : tuple of ndarray
+        Matching of ``true_labels`` and ``estimated_labels``.
+        Label ``indices[0][i]`` of ``true_labels`` and label ``indices[1][i]`` of ``estimated_labels`` correspond each other in the optimal matching.
+    """
     cm = confusion_matrix(true_labels, estimate_labels)
     indexes = linear_sum_assignment(_dist_perm(cm))
     cm2 = cm[indexes[0], indexes[1]]

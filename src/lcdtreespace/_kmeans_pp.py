@@ -334,6 +334,34 @@ def _geodesic_lam_fast(a_edge1, a_edge2, a_coord1, a_coord2, a_angle,
 
 
 def frechet_mean(X, max_iter = 5000, eps = 1e-7):
+    """ Computes frechet mean of sample points.
+
+    It uses the proximal point algorithm.
+
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        Sample points. See :py:func:`lcmle_2dim` for the required format.
+    max_iter : int
+        Maximum number of iterations of proximal point algorithm.
+        Defaults to 1000.
+    eps : float
+        When sum of squared distances from current mean estimates does not decrease by more than ``eps``, then the algorithm terminates.
+
+    Returns
+    -------
+    mean_edge1 : int
+        First orthant of the mean.
+    mean_edge2
+        Second orthant of the mean.
+    mean_coord1
+        First coordinate of the mean.
+    mean_coord2
+        Second coordinate of the mean.
+    mean_angle
+        ``np.arctan(mean_coord2/mean_coord1)``.
+    """
+
     # assume X is sorted
     sample_coord1 = X['x1'].values
     sample_coord2 = X['x2'].values
@@ -380,7 +408,28 @@ def frechet_mean(X, max_iter = 5000, eps = 1e-7):
 
 
 def kmeans_pp(X, n_cluster = 2, seed=10, max_iter=1000):
+    """ Conducts k-means++ algorithm.
 
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        Sample points. See :py:func:`lcmle_2dim` for the required format.
+    n_cluster : int
+        Number of clusters.
+    seed : float
+        Random seed for initialization of centers.
+        Defaults to 10.
+    max_iter : int
+        Maximum number of iterations of EM algorithm.
+        Defaults to 1000.
+
+    Returns
+    -------
+    labels : numpy.ndarray
+        Estimated cluster labels.
+    cluster_centers : pandas.DataFrame
+        DataFrame containing cluster centers (with the same format as input DataFrame).
+    """
     #x['y'] = 1
     n = len(X)
     #x_np = x.to_numpy()

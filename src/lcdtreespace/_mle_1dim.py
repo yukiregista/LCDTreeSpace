@@ -174,9 +174,69 @@ def _obj_grad_1dim(y, x, labels, n_label, bend=False, return_only_integ = False,
     #print(f"grad  :  {np.linalg.norm(grad)}")
     return (obj,grad)
 
-def lcmle_1dim(x,labels,n_label, bend=False, initial = 'random', random_seed = None,print_objective=False, runs = 5):
-    # calculates one dimensional log-concave m.l.e.
+def lcmle_1dim(x,ort,n_ort, bend=False, initial = 'random', random_seed = None,print_objective=False, runs = 5):
+    """Calculates one dimensional log-concave m.l.e.
 
+    Parameters
+    ----------
+    x : numpy.ndarray
+        coordinates of sample points.
+    ort : numpy.ndarray
+        orthants that sample points belong to.
+        Should have same length as x.
+    n_ort : int
+        number of orthants.
+        In case of one dimensional tree space, n_ort should be 3.
+    bend : bool, optional
+        Indicator for allowing bend at the origin point.
+        Defaults to False.
+    initial : str or nd.array, optional
+        How to set initial values of optimized parameters.
+        Should be one of the followings:
+            - 'random' : initial value is set randomly.random numbers can be controled by setting random_seed argument.
+            - numpy.ndarray : used as initial value. The length of the array should be the same size as x and ort.
+        Defaults to "random".
+    random_seed : None or float, optional
+        Random seed to use when initial is "random".
+        Defaults to None.
+    print_objective : bool, optional
+        Whether to show objective values of each run.
+        Defaults to False.
+    runs : int, optional
+        Number of optimization runs.
+        Defaults to 5.
+
+    Returns
+    -------
+    ndarray
+        Optimal parameter
+
+    """
+
+    '''Calculates one dimensional log-concave m.l.e.
+
+    Args:
+        x (nd.array): coordinates of sample points.
+        ort (nd.array): orthants that sample points belong to.
+            Should have same length as x.
+        n_ort (int): number of orthants.
+            In case of one dimensional tree space, n_ort should be 3.
+        bend (bool, optional): Indicator for allowing bend at the origin point.
+            Defaults to False.
+        initial (str or nd.array, optional): How to set initial values of optimized parameters.
+            Should be one of the followings:
+                "random" : initial value is set randomly.
+                    random numbers can be controled by setting random_seed argument.
+                nd.array : used as initial value.
+                    The length of the array should be the same size as x and ort.
+            Defaults to "random".
+        random_seed (None or float, optional): Random seed to use when initial is "random".
+            Defaults to None.
+        print_objective (bool, optional): Whether to show objective values of each run.
+            Defaults to False.
+        runs (int, optional): Number of optimization runs.
+            Defaults to 5.
+    '''
     n = len(x)
 
     if initial == 'random':
@@ -188,33 +248,33 @@ def lcmle_1dim(x,labels,n_label, bend=False, initial = 'random', random_seed = N
     else:
         y = initial
 
-    res = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, labels, n_label, bend,False,False), method='BFGS')
+    res = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, ort, n_ort, bend,False,False), method='BFGS')
     print(f"run {0}:", res.fun)
     for i in range(1,runs):
         y = np.random.normal(size=n) - 5
-        res2 = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, labels, n_label, bend,False,False), method='BFGS')
+        res2 = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, ort, n_ort, bend,False,False), method='BFGS')
         print(f"run {i}:", res2.fun)
         if res2.fun < res.fun:
             res = res2
 
 
 
-    #res = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, labels, n_label, bend,False,print_objective), method='BFGS',options={"disp":True})
-    #res = minimize(objdake, jac=None, x0=y, args=(x, labels, n_label, bend,False,print_objective), method='BFGS',options={"disp":True})
+    #res = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, labels, n_ort, bend,False,print_objective), method='BFGS',options={"disp":True})
+    #res = minimize(objdake, jac=None, x0=y, args=(x, labels, n_ort, bend,False,print_objective), method='BFGS',options={"disp":True})
     '''
     pbm = PBM(n=n, sense=min)
     y = res.x
     for i in range(10000):
         if i%100 == 0:
-            obj, g = _obj_grad_1dim(y,x,labels,n_label,bend,False,True)
+            obj, g = _obj_grad_1dim(y,x,labels,n_ort,bend,False,True)
         else:
-            obj, g = _obj_grad_1dim(y,x,labels,n_label,bend,False,False)
+            obj, g = _obj_grad_1dim(y,x,labels,n_ort,bend,False,False)
         #print(i, obj)
         y = pbm.step(obj, y, g)
     '''
-    #res = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, labels, n_label, bend,False,print_objective), method='BFGS',options={"disp":True})
-    #print(_obj_grad_1dim(res.x,x,labels,n_label)[0])
-    integg = _obj_grad_1dim(res.x,x,labels,n_label, bend, return_only_integ=True)
+    #res = minimize(_obj_grad_1dim, jac=True, x0=y, args=(x, labels, n_ort, bend,False,print_objective), method='BFGS',options={"disp":True})
+    #print(_obj_grad_1dim(res.x,x,labels,n_ort)[0])
+    integg = _obj_grad_1dim(res.x,x,ort,n_ort, bend, return_only_integ=True)
     return res.x - np.log(integg)
 
 

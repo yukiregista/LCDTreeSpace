@@ -24,7 +24,17 @@ def _signed_area(a,b,c):
     return area
 
 class logconcave_density_estimate_2dim():
+    """ Log-concave density estimate object in 2dim tree space.
+    """
     def __init__(self, y, X):
+        """
+        Parameters
+        ----------
+        y : numpy.ndarray
+            log-density at each sample point.
+        X : pandas.DataFrame
+            Sample points. See :py:func:`lcmle_2dim` for the required format.
+        """
         sample_coord1 = X['x1'].values
         sample_coord2 = X['x2'].values
         sample_angle = X['angle'].values
@@ -69,6 +79,25 @@ class logconcave_density_estimate_2dim():
                 self.area_list[i] = areas
 
     def pdf(self,x1,x2,cell0,cell1):
+        """ Returns the value of the density value at a point.
+
+        Parameters
+        ----------
+        x1 : float
+            First coordinate.
+        x2 : float
+            Second coordinate.
+        cell0 : int
+            First orthant.
+        cell1 : int
+            Second orthant.
+            cell1 should have a larger value than cell0.
+
+        Returns
+        -------
+        float
+            Density at the point ``(x1,x2)`` in the orthant ``(cell0, cell1)``.
+        """
         ortind = self.oo[(cell0,cell1)]
         if self.support_list[ortind] is None:
             return 0
@@ -94,26 +123,58 @@ class logconcave_density_estimate_2dim():
 
 
 class logconcave_density_estimate_1dim():
-    def __init__(self, y, x, ort, n_label, bend=False):
-
+    """ Log-concave density estimate object in 2dim tree space.
+    """
+    def __init__(self, y, x, ort, n_ort, bend=False):
+        """
+        Parameters
+        ----------
+        y : numpy.ndarray
+            log-density at each sample point.
+        x : numpy.ndarray
+            coordinates of sample points.
+        ort : numpy.ndarray
+            orthants that sample points belong to.
+            Should have same length as x.
+        n_ort : int
+            number of orthants.
+            In case of one dimensional tree space, n_ort should be 3.
+        bend : bool
+            If we allow for non-log-concave bend at the origin point.
+            Defaults to False.
+        """
         self.y = y
         self.x = x
         self.ort=  ort
-        self.n_label = n_label
+        self.n_label = n_ort
         if bend:
-            hull_list, support_list, max_o, top_ort, bottom_ort, lam_index, lam = tree_hull_bend(y,x,ort,n_label)
+            hull_list, support_list, max_o, top_ort, bottom_ort, lam_index, lam = tree_hull_bend(y,x,ort,n_ort)
         else:
-            hull_list, support_list, max_o, top_ort, bottom_ort, lam_index, lam = tree_hull(y,x,ort,n_label)
+            hull_list, support_list, max_o, top_ort, bottom_ort, lam_index, lam = tree_hull(y,x,ort,n_ort)
 
         self.max_o = max_o
         self.support_list = support_list
         self.hull_list = hull_list
 
-        self.xmaxs = np.zeros(n_label)
-        for i in range(n_label):
+        self.xmaxs = np.zeros(n_ort)
+        for i in range(n_ort):
             self.xmaxs[i] = hull_list[i].points[self.support_list[i][-1]][0]
 
     def pdf(self,x,cell):
+        """ Returns the value of the density value at a point.
+
+        Currently, it only supports when ``n_ort`` = 3.
+
+        Parameters
+        ----------
+        x : coordinate of the point.
+        cell : orthant of the point.
+
+        Returns
+        -------
+        float
+            Density at the point ``x`` in the orthant ``cell``.
+        """
         support = self.support_list[cell]
         hull = self.hull_list[cell]
 

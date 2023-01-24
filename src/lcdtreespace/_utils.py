@@ -26,6 +26,12 @@ def tuple_2dcells():
     return tuple(cells)
 
 def list_2dcells():
+    """ Returns list of all orthants in 2dim tree space.
+
+    Each axis corresponding to an internal edge of 4-tree is labeled from 0 to 10.
+    Each orthant in 2dim tree space are represented as ``(i,j)``, where ``i`` and ``j`` is the
+    label of axes.
+    """
     # list of 2d cells represented by tuple of two edges
     cells = []
     for i in range(10):
@@ -53,6 +59,15 @@ def orthant_to_ortind():
     return oo
 
 def argsort_by_orthants(X):
+    """Sort sample points DataFrame by orthants.
+
+    Before conducting any estimation, DataFrame X should be sorted using this function.
+
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        See :py:func:`lcmle_2dim` for the required format.
+    """
     # X: dataframe, having columns named "edge1" and "edge2"
     # returns argsorted index by orthants
     orts =tuple(zip(X['edge1'].values, X['edge2'].values))

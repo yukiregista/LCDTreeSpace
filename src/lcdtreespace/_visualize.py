@@ -8,7 +8,21 @@ import numpy as np
 from ._utils import *
 
 
-def plot_petersen(x, c=None):
+def plot_petersen(X, c=None):
+    """Scatter plot points in 2dim tree space on petersen graph.
+
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        Sample points. See :py:func:`lcmle_2dim` for the required format.
+    c : None or numpy.ndarray
+        Colors for each sample point. Should be of the same length as ``X``.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure of the plot.
+    """
     fig = plt.figure()
     ax = fig.add_subplot(111, aspect='equal')
 
@@ -34,7 +48,7 @@ def plot_petersen(x, c=None):
     x_coordinate = []
     y_coordinate = []
     for i in range(len(x)):
-        point = x.iloc[i]
+        point = X.iloc[i]
         #label = labels[i]
         vertex0 = np.array(vertices[int(point['edge1'])])
         vertex1 = np.array(vertices[int(point['edge2'])])
@@ -51,6 +65,26 @@ def plot_petersen(x, c=None):
 
 
 def plot_density_2dim(density, xmax, ymax):
+    """Heatmap of the density in 2dim tree space on each orthant.
+
+    Parameters
+    ----------
+    density : 2 dimensional density object
+        Should be one of the followings:
+        
+            - :py:class:`kernel_density_estimate_2dim`
+            - :py:class:`logconcave_density_estimate_2dim`
+            - :py:class:`normal_centered_2dim`
+            - :py:class:`normal_uncentered_2dim`
+    xmax, ymax : float or numpy.ndarray
+        Maximum value for x-axis and y-axis.
+        if numpy.ndarray is provided, then the length should be 15 (the number of orthants in 2dim tree space).
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure of the plot.
+    """
     # plot 2d density on each orthant
     # INPUTS:
     ## density: density object that has method pdf(x1,x2,cell1,cell2)
@@ -118,11 +152,27 @@ def plot_density_2dim(density, xmax, ymax):
     #fig.savefig("a.png")
 
 def plot_scatter_2dim(X, xmax, ymax, c=None):
+    """Scatter plot points in 2dim tree space on each orthant.
+
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        Sample points. See :py:func:`lcmle_2dim` for the required format.
+    xmax, ymax : float or numpy.ndarray
+        Maximum value for x-axis and y-axis.
+        if numpy.ndarray is provided, then the length should be 15 (the number of orthants in 2dim tree space).
+    c : None or numpy.ndarray
+        Colors for each sample point. Should be of the same length as ``X``.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure of the plot.
+    """
     # plot 2d density on each orthant
     # INPUTS:
     ## density: density object that has method pdf(x1,x2,cell1,cell2)
     ## xmax, xmin, ymax, ymin : float or ndarray of length 15.
-
 
     xmax = np.asarray(xmax); ymax = np.asarray(ymax)
     if xmax.ndim == 0:

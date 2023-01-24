@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; lcdtreespace  documentation</title>
+  <title>LCDTreeSpace API Documentation &mdash; lcdtreespace  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -39,87 +39,92 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">argsort_by_orthants()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.calc_integ"><code class="docutils literal notranslate"><span class="pre">calc_integ()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.clustering_accuracy"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.coalescent_1dim"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.T"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.T</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.pdf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.sample"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.sample()</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LCDTreeSpace API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.argsort_by_orthants"><code class="docutils literal notranslate"><span class="pre">argsort_by_orthants()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.calc_integ"><code class="docutils literal notranslate"><span class="pre">calc_integ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.clustering_accuracy"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.coalescent_1dim"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.T"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.T</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.coalescent_1dim.sample"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.exponential_1dim"><code class="docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.exponential_1dim.mu"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.mu</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.exponential_1dim.lam"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.lam</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.exponential_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.exponential_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.pdf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.exponential_1dim.sample"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.sample()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.exponential_1dim"><code class="docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.exponential_1dim.mu"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.mu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.exponential_1dim.lam"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.lam</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.exponential_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.exponential_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.exponential_1dim.sample"><code class="docutils literal notranslate"><span class="pre">exponential_1dim.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.frechet_mean"><code class="docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim.pdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.frechet_mean"><code class="docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.ise_1dim"><code class="docutils literal notranslate"><span class="pre">ise_1dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.ise_2dim"><code class="docutils literal notranslate"><span class="pre">ise_2dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim.pdf()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim.pdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim.pdf()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.kmeans_pp"><code class="docutils literal notranslate"><span class="pre">kmeans_pp()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.lcmle_2dim"><code class="docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.list_2dcells"><code class="docutils literal notranslate"><span class="pre">list_2dcells()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim.pdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.kmeans_pp"><code class="docutils literal notranslate"><span class="pre">kmeans_pp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.lcmle_2dim"><code class="docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.list_2dcells"><code class="docutils literal notranslate"><span class="pre">list_2dcells()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim.pdf()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim.pdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim.pdf()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.normal_1dim"><code class="docutils literal notranslate"><span class="pre">normal_1dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_1dim.mu"><code class="docutils literal notranslate"><span class="pre">normal_1dim.mu</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_1dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_1dim.sigma</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_1dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_1dim.pdf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_1dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_1dim.sample()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_1dim"><code class="docutils literal notranslate"><span class="pre">normal_1dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_1dim.mu"><code class="docutils literal notranslate"><span class="pre">normal_1dim.mu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_1dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_1dim.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_1dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_1dim.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_1dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_1dim.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.mu"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.mu</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.sigma</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.k"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.k</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.pdf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.sample()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.mu"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.mu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.k"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.k</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_bend_1dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.cells"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.cells</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.sigma</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.pdf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.sample()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.cells"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.cells</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_centered_2dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.cell"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.cell</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.mu"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.mu</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.sigma</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.__init__()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.pdf()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.sample()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.cell"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.cell</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.mu"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.mu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.sigma"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.__init__"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.pdf"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim.sample"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.plot_density_2dim"><code class="docutils literal notranslate"><span class="pre">plot_density_2dim()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.plot_petersen"><code class="docutils literal notranslate"><span class="pre">plot_petersen()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#lcdtreespace.plot_scatter_2dim"><code class="docutils literal notranslate"><span class="pre">plot_scatter_2dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.plot_density_2dim"><code class="docutils literal notranslate"><span class="pre">plot_density_2dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.plot_petersen"><code class="docutils literal notranslate"><span class="pre">plot_petersen()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lcdtreespace.plot_scatter_2dim"><code class="docutils literal notranslate"><span class="pre">plot_scatter_2dim()</span></code></a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -136,7 +141,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">LCDTreeSpace API Documentation</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/yukiregista/LCDTreeSpace/blob/develop/docs/source/lcdtreespace2.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -146,7 +151,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <span class="target" id="module-lcdtreespace"></span><dl class="py function">
+  <section id="module-lcdtreespace">
+<span id="lcdtreespace-api-documentation"></span><h1>LCDTreeSpace API Documentation<a class="headerlink" href="#module-lcdtreespace" title="Permalink to this heading"></a></h1>
+<dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.argsort_by_orthants">
 <span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">argsort_by_orthants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_utils.html#argsort_by_orthants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.argsort_by_orthants" title="Permalink to this definition"></a></dt>
 <dd><p>Sort sample points DataFrame by orthants.</p>
@@ -376,6 +383,78 @@ Defaults to 1000.</p></li>
 <li><p><em>mean_coord1</em> – First coordinate of the mean.</p></li>
 <li><p><em>mean_coord2</em> – Second coordinate of the mean.</p></li>
 <li><p><em>mean_angle</em> – <code class="docutils literal notranslate"><span class="pre">np.arctan(mean_coord2/mean_coord1)</span></code>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcdtreespace.ise_1dim">
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">ise_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_ise.html#ise_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.ise_1dim" title="Permalink to this definition"></a></dt>
+<dd><p>Computation of integrated squared error (ise) in 1dim tree space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_density</strong> (<em>density object</em>) – </p></li>
+<li><p><strong>estimate_density</strong> (<em>density object</em>) – </p></li>
+<li><p><strong>epsabs</strong> (<em>float</em>) – Allowed error for computation of ise.
+Defaults to 1e-4.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>Both <a href="#id1"><span class="problematic" id="id2">``</span></a>true_density’’ and <a href="#id3"><span class="problematic" id="id4">``</span></a>estimate_density’’ should be one of the followings:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#lcdtreespace.normal_1dim" title="lcdtreespace.normal_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_1dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.normal_bend_1dim" title="lcdtreespace.normal_bend_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.coalescent_1dim" title="lcdtreespace.coalescent_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.exponential_1dim" title="lcdtreespace.exponential_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_1dim" title="lcdtreespace.kernel_density_estimate_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_1dim" title="lcdtreespace.logconcave_density_estimate_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>ise</strong> (<em>Integrated squared error</em>)</p></li>
+<li><p><strong>err</strong> (<em>Error of ise.</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcdtreespace.ise_2dim">
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">ise_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_ise.html#ise_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.ise_2dim" title="Permalink to this definition"></a></dt>
+<dd><p>Computation of integrated squared error (ise) in 2dim tree space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_density</strong> (<em>density object</em>) – </p></li>
+<li><p><strong>estimate_density</strong> (<em>density object</em>) – </p></li>
+<li><p><strong>epsabs</strong> (<em>float</em>) – Allowed error for computation of ise.
+Defaults to 1e-4.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>Both <a href="#id5"><span class="problematic" id="id6">``</span></a>true_density’’ and <a href="#id7"><span class="problematic" id="id8">``</span></a>estimate_density’’ should be one of the followings:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#lcdtreespace.normal_centered_2dim" title="lcdtreespace.normal_centered_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim" title="lcdtreespace.normal_uncentered_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim" title="lcdtreespace.kernel_density_estimate_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a></p></li>
+<li><p><a class="reference internal" href="#lcdtreespace.logconcave_density_estimate_2dim" title="lcdtreespace.logconcave_density_estimate_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>ise</strong> (<em>Integrated squared error</em>)</p></li>
+<li><p><strong>err</strong> (<em>Error of ise.</em>)</p></li>
 </ul>
 </p>
 </dd>
@@ -621,7 +700,7 @@ If manually provided, it should sum up to one.</p></li>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Optimal parameter (log-density).</p></li>
-<li><p><strong>y_hist</strong> (<em>list of numpy.ndarray</em>) – History of y values. Only returns it when <a href="#id1"><span class="problematic" id="id2">``</span></a>history’’ is True.</p></li>
+<li><p><strong>y_hist</strong> (<em>list of numpy.ndarray</em>) – History of y values. Only returns it when <a href="#id9"><span class="problematic" id="id10">``</span></a>history’’ is True.</p></li>
 </ul>
 </p>
 </dd>
@@ -1171,6 +1250,7 @@ if numpy.ndarray is provided, then the length should be 15 (the number of orthan
 </dl>
 </dd></dl>
 
+</section>
 
 
            </div>

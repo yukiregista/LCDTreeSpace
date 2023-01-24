@@ -14,6 +14,69 @@ __all__ = ['cluster']
 
 def lcmix_cluster(X, n_cluster, y_random_seed = None, pi_init = 'uniform', pi_random_seed = None,
     max_em_iter = 100, rtol=1e-6):
+    """
+    Conducts clustering with log-concave mixture model.
+
+
+    Parameters
+    ----------
+    X : pandas.DataFrame
+        Sample points. See :py:func:`lcmle_2dim` for the required format.
+
+    n_cluster : int
+        Number of clusters.
+
+    y_random_seed: None or int
+        Random seed for random initialization of y.
+        Defauls to None.
+
+    y_init : str or ndarray
+        Choice for initialization. Should be one of the following:
+            - 'uniform' : initial pi gives uniform weight to each cluster
+            - ndarray of length n_cluster.
+        Defaults to 'uniform'
+
+    pi_random_seed: None or int
+        Random seed for random initialization of pi.
+        Defaults to None.
+
+    max_em_iter : int
+        Maximum number of iterations of EM algorithm.
+        Defaults to 100.
+
+    rtol : float
+        The criteria for stopping the EM algorithm.
+        The algorithm terminates when (LogLikeihood[i] - LogLikeihood[i-1])/n < rtol,
+        where n is the sample size.
+
+    Notes
+    -----
+    If X is not sorted, run the following command before applying this function.
+         .. highlight:: python
+         .. code-block:: python
+
+            import lcdtreespace as lcd
+            sort_ind = lcd.argsort_by_orthants(X)
+            X = X.iloc[sort_ind]
+
+    Returns
+    -------
+    pi : numpy.ndarray
+        Optimized cluster proportion.
+    Y : numpy.ndarray
+        n times n_cluster.
+        Contains logarithm of each log-concave density at sample points.
+    Theta : numpy.ndarray
+        n times n_cluster
+        Each component of Likelihood.
+        np.argmax(Theta, axis=1) will create cluster assignments of all points.
+    LogLikelihoods : List of floats
+        Loglikelihood at each iteration.
+    pi_list : List of numpy.ndarray
+        pi at each iteration.
+    Y_list : List of numpy.ndarray
+        Y at each iteration.
+    """
     # conducts clustering with log-concave mixture model.
     # INPUT:
     ## X : dataframe containing sample points. It should have following columns:
