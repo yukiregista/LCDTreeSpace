@@ -65,7 +65,7 @@ html_context = {
   'display_github': True,
   'github_user': 'yukiregista',
   'github_repo': 'LCDTreeSpace',
-  'github_version': 'develop/docs/'
+  'github_version': 'develop/docs/source/'
 }
 
 html_static_path = ['_static']
