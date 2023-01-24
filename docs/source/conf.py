@@ -60,4 +60,11 @@ napoleon_attr_annotations = True
 
 #html_theme = 'alabaster'
 html_theme = 'sphinx_rtd_theme'
+html_context = {
+  'display_github': True,
+  'github_user': 'yukiregista',
+  'github_repo': 'LCDTreeSpace',
+  'github_version': 'develop/docs'
+}
+
 html_static_path = ['_static']
