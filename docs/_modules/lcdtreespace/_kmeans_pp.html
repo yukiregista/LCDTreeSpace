@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lcdtreespace._kmeans_pp &mdash; lcdtreespace  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> lcdtreespace
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lcdtreespace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">lcdtreespace._kmeans_pp</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for lcdtreespace._kmeans_pp</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">._utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">._kde</span> <span class="kn">import</span> <span class="n">_geodesic_dist2d</span><span class="p">,</span> <span class="n">_create_distance_mat</span>
+
+
+<span class="k">def</span> <span class="nf">_geodesic_lam</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">lam</span><span class="p">,</span> <span class="n">lenmat</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Computes (1-lam)*a + lam * b, the point lam*d(a,b) away from a on the geodesic [a,b]</span>
+    <span class="k">if</span> <span class="n">lenmat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lenmat</span> <span class="o">=</span> <span class="n">b_to_b_lenmat</span><span class="p">()</span>
+
+    <span class="n">cell_a</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">cell_b</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="c1"># Case A: cell_a and cell_b are the same</span>
+    <span class="k">if</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="p">[[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">b</span><span class="p">[[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dist_ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                    <span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+        <span class="n">index_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist_ab</span><span class="p">)</span>
+        <span class="n">n_ort_btwn</span> <span class="o">=</span> <span class="n">dist_ab</span><span class="p">[</span><span class="n">index_min</span><span class="p">]</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">index_min</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_min</span> <span class="o">%</span> <span class="mi">2</span>
+
+        <span class="c1">#constants</span>
+        <span class="n">PI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">PI_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">n_ort_btwn</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">bd_index</span> <span class="o">=</span> <span class="n">cell_a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">l</span><span class="p">:</span> <span class="c1">#if l==1</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">];</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="k">if</span> <span class="n">r</span><span class="p">:</span> <span class="c1">## if r==1</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">x_b</span>
+            <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">y_b</span>
+            <span class="k">if</span> <span class="n">x_p</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># p is in the same orthant as a</span>
+                <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># p is in the same orthant as b</span>
+                <span class="k">if</span> <span class="n">r</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="o">-</span><span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_p</span><span class="p">,</span> <span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+
+        <span class="k">elif</span> <span class="n">n_ort_btwn</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">bd1_index</span> <span class="o">=</span> <span class="n">cell_a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">bd2_index</span> <span class="o">=</span> <span class="n">cell_b</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">l</span><span class="p">:</span> <span class="c1">#if l==1</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">];</span> <span class="c1">## y is the closest coordinate</span>
+                <span class="n">a_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">PI_2</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;angle&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">];</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span> <span class="c1">## y is the closest coordinate</span>
+                <span class="n">a_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;angle&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">r</span><span class="p">:</span> <span class="c1">## if r==1</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">];</span> <span class="c1">## x is the closest coordinate</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span>
+                <span class="n">b_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">PI_2</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;angle&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">];</span> <span class="c1">## x is the closest coordinate</span>
+                <span class="n">b_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;angle&quot;</span><span class="p">]</span>
+            <span class="n">ab_angle</span> <span class="o">=</span> <span class="n">a_angle_to_closest_edge</span> <span class="o">+</span> <span class="n">b_angle_to_closest_edge</span>
+            <span class="k">if</span> <span class="n">ab_angle</span> <span class="o">&lt;</span> <span class="n">PI</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+                <span class="c1"># not cone path</span>
+                <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">x_b</span>
+                <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">y_b</span>
+                <span class="k">if</span> <span class="n">x_p</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y_p</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># p is in the same orthant as a</span>
+                    <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">x_p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y_p</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># p is in the orthant [bd1_index,bd2_index] or [bd2_index,bd1_index]</span>
+                    <span class="k">if</span> <span class="n">bd1_index</span> <span class="o">&lt;</span> <span class="n">bd2_index</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">bd1_index</span><span class="p">,</span> <span class="n">bd2_index</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">bd2_index</span><span class="p">,</span> <span class="n">bd1_index</span><span class="p">,</span> <span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="o">-</span><span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">x_p</span><span class="o">&lt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">y_p</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># p is in the same orthant as b</span>
+                    <span class="k">if</span> <span class="n">r</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">y_p</span><span class="p">,</span> <span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="o">-</span><span class="n">y_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">x_p</span><span class="p">,</span> <span class="o">-</span><span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">y_p</span><span class="p">,</span> <span class="o">-</span><span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># cone path</span>
+                <span class="n">norm_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x_a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y_a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">norm_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x_b</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y_b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">mid_lam</span> <span class="o">=</span> <span class="n">norm_a</span><span class="o">/</span><span class="p">(</span><span class="n">norm_a</span> <span class="o">+</span> <span class="n">norm_b</span><span class="p">)</span> <span class="c1"># relative distance from a to the origin</span>
+                <span class="k">if</span> <span class="n">lam</span> <span class="o">&lt;=</span> <span class="n">mid_lam</span><span class="p">:</span>
+                    <span class="c1"># point is in the same orthant as a</span>
+                    <span class="n">relative_lam</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">/</span> <span class="n">mid_lam</span> <span class="c1"># relative distance from a to p (compared to dist(a,O))</span>
+                    <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span> <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># point is in the same orthant as b</span>
+                    <span class="n">relative_lam</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mid_lam</span><span class="p">)</span> <span class="c1"># relative distance from b to p (compared to dist(b,O))</span>
+                    <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span> <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># cone path</span>
+            <span class="n">norm_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">norm_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">mid_lam</span> <span class="o">=</span> <span class="n">norm_a</span><span class="o">/</span><span class="p">(</span><span class="n">norm_a</span> <span class="o">+</span> <span class="n">norm_b</span><span class="p">)</span> <span class="c1"># relative distance from a to the origin</span>
+            <span class="k">if</span> <span class="n">lam</span> <span class="o">&lt;=</span> <span class="n">mid_lam</span><span class="p">:</span>
+                <span class="c1"># point is in the same orthant as a</span>
+                <span class="n">relative_lam</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">/</span> <span class="n">mid_lam</span> <span class="c1"># relative distance from a to p (compared to dist(a,O))</span>
+                <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span> <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># point is in the same orthant as b</span>
+                <span class="n">relative_lam</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mid_lam</span><span class="p">)</span> <span class="c1"># relative distance from b to p (compared to dist(b,O))</span>
+                <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">];</span> <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_p</span><span class="p">,</span> <span class="n">y_p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="n">x_p</span><span class="p">)],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;edge1&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;angle&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">p</span>
+
+
+<span class="k">def</span> <span class="nf">_geodesic_lam_fast</span><span class="p">(</span><span class="n">a_edge1</span><span class="p">,</span> <span class="n">a_edge2</span><span class="p">,</span> <span class="n">a_coord1</span><span class="p">,</span> <span class="n">a_coord2</span><span class="p">,</span> <span class="n">a_angle</span><span class="p">,</span>
+                    <span class="n">b_edge1</span><span class="p">,</span> <span class="n">b_edge2</span><span class="p">,</span> <span class="n">b_coord1</span><span class="p">,</span> <span class="n">b_coord2</span><span class="p">,</span> <span class="n">b_angle</span><span class="p">,</span>
+                    <span class="n">lam</span><span class="p">,</span> <span class="n">lenmat</span><span class="p">):</span>
+    <span class="c1"># Computes (1-lam)*a + lam * b, the point lam*d(a,b) away from a on the geodesic [a,b]</span>
+
+    <span class="n">cell_a</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a_edge1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">a_edge2</span><span class="p">))</span>
+    <span class="n">cell_b</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">b_edge1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b_edge2</span><span class="p">))</span>
+
+    <span class="c1"># Case A: cell_a and cell_b are the same</span>
+    <span class="k">if</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+        <span class="n">p_coord1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_coord1</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">b_coord1</span>
+        <span class="n">p_coord2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_coord2</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">b_coord2</span>
+        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">p_coord2</span><span class="p">,</span> <span class="n">p_coord1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dist_ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                    <span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">lenmat</span><span class="p">[</span><span class="n">cell_a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell_b</span><span class="p">[</span><span class="mi">1</span><span class="p">]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+        <span class="n">index_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dist_ab</span><span class="p">)</span>
+        <span class="n">n_ort_btwn</span> <span class="o">=</span> <span class="n">dist_ab</span><span class="p">[</span><span class="n">index_min</span><span class="p">]</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">index_min</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_min</span> <span class="o">%</span> <span class="mi">2</span>
+
+        <span class="c1">#constants</span>
+        <span class="n">PI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">PI_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">n_ort_btwn</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">bd_index</span> <span class="o">=</span> <span class="n">cell_a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">l</span><span class="p">:</span> <span class="c1">#if l==1</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a_coord1</span><span class="p">;</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a_coord2</span><span class="p">;</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a_coord2</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a_coord1</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="k">if</span> <span class="n">r</span><span class="p">:</span> <span class="c1">## if r==1</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_coord1</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="n">b_coord2</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_coord2</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="n">b_coord1</span> <span class="c1">## y is the shared coordinate</span>
+            <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">x_b</span>
+            <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">y_b</span>
+            <span class="k">if</span> <span class="n">x_p</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># p is in the same orthant as a</span>
+                <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+                    <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+                    <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+                    <span class="n">p_coord1</span> <span class="o">=</span> <span class="n">x_p</span>
+                    <span class="n">p_coord2</span> <span class="o">=</span> <span class="n">y_p</span>
+                    <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="n">x_p</span><span class="p">)</span>
+                    <span class="c1">#p = pd.Series([cell_a[0], cell_a[1], x_p, y_p, np.arctan2(y_p,x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+                    <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+                    <span class="n">p_coord1</span> <span class="o">=</span> <span class="n">y_p</span>
+                    <span class="n">p_coord2</span> <span class="o">=</span> <span class="n">x_p</span>
+                    <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">)</span>
+                    <span class="c1">#p = pd.Series([cell_a[0], cell_a[1], y_p, x_p, np.arctan2(x_p,y_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># p is in the same orthant as b</span>
+                <span class="k">if</span> <span class="n">r</span><span class="p">:</span>
+                    <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">b_edge1</span>
+                    <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">b_edge2</span>
+                    <span class="n">p_coord1</span> <span class="o">=</span> <span class="o">-</span><span class="n">x_p</span>
+                    <span class="n">p_coord2</span> <span class="o">=</span> <span class="n">y_p</span>
+                    <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="o">-</span><span class="n">x_p</span><span class="p">)</span>
+                    <span class="c1">#p = pd.Series([cell_b[0], cell_b[1], -x_p, y_p, np.arctan2(y_p,-x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">b_edge1</span>
+                    <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">b_edge2</span>
+                    <span class="n">p_coord1</span> <span class="o">=</span> <span class="n">y_p</span>
+                    <span class="n">p_coord2</span> <span class="o">=</span> <span class="o">-</span><span class="n">x_p</span>
+                    <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">)</span>
+                    <span class="c1">#p = pd.Series([cell_b[0], cell_b[1], y_p, -x_p, np.arctan2(-x_p,y_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+
+        <span class="k">elif</span> <span class="n">n_ort_btwn</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">bd1_index</span> <span class="o">=</span> <span class="n">cell_a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">bd2_index</span> <span class="o">=</span> <span class="n">cell_b</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">l</span><span class="p">:</span> <span class="c1">#if l==1</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a_coord1</span><span class="p">;</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a_coord2</span><span class="p">;</span> <span class="c1">## y is the closest coordinate</span>
+                <span class="n">a_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">PI_2</span> <span class="o">-</span> <span class="n">a_angle</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_a</span> <span class="o">=</span> <span class="n">a_coord2</span><span class="p">;</span>
+                <span class="n">y_a</span> <span class="o">=</span> <span class="n">a_coord1</span><span class="p">;</span> <span class="c1">## y is the closest coordinate</span>
+                <span class="n">a_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">a_angle</span>
+            <span class="k">if</span> <span class="n">r</span><span class="p">:</span> <span class="c1">## if r==1</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_coord2</span><span class="p">;</span> <span class="c1">## x is the closest coordinate</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_coord1</span><span class="p">;</span>
+                <span class="n">b_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">PI_2</span> <span class="o">-</span> <span class="n">b_angle</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_coord1</span><span class="p">;</span>
+                <span class="n">y_b</span> <span class="o">=</span> <span class="o">-</span><span class="n">b_coord2</span><span class="p">;</span> <span class="c1">## x is the closest coordinate</span>
+                <span class="n">b_angle_to_closest_edge</span> <span class="o">=</span> <span class="n">b_angle</span>
+            <span class="n">ab_angle</span> <span class="o">=</span> <span class="n">a_angle_to_closest_edge</span> <span class="o">+</span> <span class="n">b_angle_to_closest_edge</span>
+            <span class="k">if</span> <span class="n">ab_angle</span> <span class="o">&lt;</span> <span class="n">PI</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+                <span class="c1"># not cone path</span>
+                <span class="n">x_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">x_b</span>
+                <span class="n">y_p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_a</span> <span class="o">+</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">y_b</span>
+                <span class="k">if</span> <span class="n">x_p</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y_p</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># p is in the same orthant as a</span>
+                    <span class="k">if</span> <span class="n">l</span><span class="p">:</span>
+                        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+                        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+                        <span class="n">p_coord1</span> <span class="o">=</span> <span class="n">x_p</span>
+                        <span class="n">p_coord2</span> <span class="o">=</span> <span class="n">y_p</span>
+                        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="n">x_p</span><span class="p">)</span>
+                        <span class="c1">#p = pd.Series([cell_a[0], cell_a[1], x_p, y_p, np.arctan2(y_p, x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+                        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+                        <span class="n">p_coord1</span> <span class="o">=</span> <span class="n">y_p</span>
+                        <span class="n">p_coord2</span> <span class="o">=</span> <span class="n">x_p</span>
+                        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">)</span>
+                        <span class="c1">#p = pd.Series([cell_a[0], cell_a[1], y_p, x_p, np.arctan2(x_p, y_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                <span class="k">elif</span> <span class="n">x_p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">y_p</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># p is in the orthant [bd1_index,bd2_index] or [bd2_index,bd1_index]</span>
+                    <span class="k">if</span> <span class="n">bd1_index</span> <span class="o">&lt;</span> <span class="n">bd2_index</span><span class="p">:</span>
+                        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">bd1_index</span>
+                        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">bd2_index</span>
+                        <span class="n">p_coord1</span> <span class="o">=</span> <span class="n">y_p</span>
+                        <span class="n">p_coord2</span> <span class="o">=</span> <span class="o">-</span><span class="n">x_p</span>
+                        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">)</span>
+                        <span class="c1">#p = pd.Series([bd1_index, bd2_index, y_p, -x_p, np.arctan2(-x_p, y_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">bd1_index</span>
+                        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">bd2_index</span>
+                        <span class="n">p_coord1</span> <span class="o">=</span> <span class="o">-</span><span class="n">x_p</span>
+                        <span class="n">p_coord2</span> <span class="o">=</span> <span class="n">y_p</span>
+                        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span><span class="o">-</span><span class="n">x_p</span><span class="p">)</span>
+                        <span class="c1">#p = pd.Series([bd2_index, bd1_index, -x_p, y_p, np.arctan2(y_p, -x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                <span class="k">elif</span> <span class="n">x_p</span><span class="o">&lt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">y_p</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># p is in the same orthant as b</span>
+                    <span class="k">if</span> <span class="n">r</span><span class="p">:</span>
+                        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">b_edge1</span>
+                        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">b_edge2</span>
+                        <span class="n">p_coord1</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_p</span>
+                        <span class="n">p_coord2</span> <span class="o">=</span> <span class="o">-</span><span class="n">x_p</span>
+                        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x_p</span><span class="p">,</span><span class="o">-</span><span class="n">y_p</span><span class="p">)</span>
+                        <span class="c1">#p = pd.Series([cell_b[0], cell_b[1], -y_p, -x_p, np.arctan2(-x_p, -y_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">b_edge1</span>
+                        <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">b_edge2</span>
+                        <span class="n">p_coord1</span> <span class="o">=</span> <span class="o">-</span><span class="n">x_p</span>
+                        <span class="n">p_coord2</span> <span class="o">=</span> <span class="o">-</span><span class="n">y_p</span>
+                        <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">y_p</span><span class="p">,</span><span class="o">-</span><span class="n">x_p</span><span class="p">)</span>
+                        <span class="c1">#p = pd.Series([cell_b[0], cell_b[1], -x_p, -y_p, np.arctan2(-y_p, -x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># cone path</span>
+                <span class="n">norm_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x_a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y_a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">norm_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x_b</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y_b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">mid_lam</span> <span class="o">=</span> <span class="n">norm_a</span><span class="o">/</span><span class="p">(</span><span class="n">norm_a</span> <span class="o">+</span> <span class="n">norm_b</span><span class="p">)</span> <span class="c1"># relative distance from a to the origin</span>
+                <span class="k">if</span> <span class="n">lam</span> <span class="o">&lt;=</span> <span class="n">mid_lam</span><span class="p">:</span>
+                    <span class="c1"># point is in the same orthant as a</span>
+                    <span class="n">relative_lam</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">/</span> <span class="n">mid_lam</span> <span class="c1"># relative distance from a to p (compared to dist(a,O))</span>
+                    <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+                    <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+                    <span class="n">p_coord1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_coord1</span>
+                    <span class="n">p_coord2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_coord2</span>
+                    <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">p_coord2</span><span class="p">,</span><span class="n">p_coord1</span><span class="p">)</span>
+                    <span class="c1">#p = pd.Series([cell_a[0], cell_a[1], x_p, y_p, np.arctan2(y_p, x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># point is in the same orthant as b</span>
+                    <span class="n">relative_lam</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mid_lam</span><span class="p">)</span> <span class="c1"># relative distance from b to p (compared to dist(b,O))</span>
+                    <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">b_edge1</span>
+                    <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">b_edge2</span>
+                    <span class="n">p_coord1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_coord1</span>
+                    <span class="n">p_coord2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_coord2</span>
+                    <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">p_coord2</span><span class="p">,</span><span class="n">p_coord1</span><span class="p">)</span>
+                    <span class="c1">#x_p = (1-relative_lam) * b_coord1; y_p = (1-relative_lam) * b_coord2</span>
+                    <span class="c1">#p = pd.Series([cell_b[0], cell_b[1], x_p, y_p, np.arctan2(y_p, x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># cone path</span>
+            <span class="n">norm_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a_coord1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a_coord2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">norm_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b_coord1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b_coord2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">mid_lam</span> <span class="o">=</span> <span class="n">norm_a</span><span class="o">/</span><span class="p">(</span><span class="n">norm_a</span> <span class="o">+</span> <span class="n">norm_b</span><span class="p">)</span> <span class="c1"># relative distance from a to the origin</span>
+            <span class="k">if</span> <span class="n">lam</span> <span class="o">&lt;=</span> <span class="n">mid_lam</span><span class="p">:</span>
+                <span class="c1"># point is in the same orthant as a</span>
+                <span class="n">relative_lam</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">/</span> <span class="n">mid_lam</span> <span class="c1"># relative distance from a to p (compared to dist(a,O))</span>
+                <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">a_edge1</span>
+                <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">a_edge2</span>
+                <span class="n">p_coord1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_coord1</span>
+                <span class="n">p_coord2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_coord2</span>
+                <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">p_coord2</span><span class="p">,</span><span class="n">p_coord1</span><span class="p">)</span>
+                <span class="c1">#x_p = (1-relative_lam) * a_coord1; y_p = (1-relative_lam) * a_coord2</span>
+                <span class="c1">#p = pd.Series([cell_a[0], cell_a[1], x_p, y_p, np.arctan2(y_p, x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># point is in the same orthant as b</span>
+                <span class="n">relative_lam</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">lam</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mid_lam</span><span class="p">)</span> <span class="c1"># relative distance from b to p (compared to dist(b,O))</span>
+                <span class="n">p_edge1</span> <span class="o">=</span> <span class="n">b_edge1</span>
+                <span class="n">p_edge2</span> <span class="o">=</span> <span class="n">b_edge2</span>
+                <span class="n">p_coord1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_coord1</span>
+                <span class="n">p_coord2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">relative_lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_coord2</span>
+                <span class="n">p_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">p_coord2</span><span class="p">,</span><span class="n">p_coord1</span><span class="p">)</span>
+                <span class="c1">#x_p = (1-relative_lam) * b_coord1; y_p = (1-relative_lam) * b_coord2</span>
+                <span class="c1">#p = pd.Series([cell_b[0], cell_b[1], x_p, y_p, np.arctan2(y_p,x_p)], index = [&quot;edge1&quot;, &quot;edge2&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;angle&quot;])</span>
+    <span class="k">return</span> <span class="n">p_edge1</span><span class="p">,</span> <span class="n">p_edge2</span><span class="p">,</span> <span class="n">p_coord1</span><span class="p">,</span> <span class="n">p_coord2</span><span class="p">,</span> <span class="n">p_angle</span>
+
+
+
+
+<div class="viewcode-block" id="frechet_mean"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.frechet_mean">[docs]</a><span class="k">def</span> <span class="nf">frechet_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-7</span><span class="p">):</span>
+    <span class="c1"># assume X is sorted</span>
+    <span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">sample_coord2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">sample_edge1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;edge1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">sample_edge2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;edge2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">sample_angle</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;angle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">start_index</span> <span class="o">=</span> <span class="n">get_start_indices</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="n">cells</span> <span class="o">=</span> <span class="n">tuple_2dcells</span><span class="p">()</span>
+    <span class="n">lenmat</span> <span class="o">=</span> <span class="n">b_to_b_lenmat</span><span class="p">()</span>
+
+    <span class="c1">#mean = X.iloc[-1]</span>
+    <span class="n">mean_edge1</span> <span class="o">=</span> <span class="n">sample_edge1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mean_edge2</span> <span class="o">=</span> <span class="n">sample_edge2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mean_coord1</span> <span class="o">=</span> <span class="n">sample_coord1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mean_coord2</span> <span class="o">=</span> <span class="n">sample_coord2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mean_angle</span> <span class="o">=</span> <span class="n">sample_angle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="k">while</span> <span class="n">n_iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
+        <span class="n">old_error</span> <span class="o">=</span> <span class="n">error</span>
+        <span class="n">n_iter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#mean_old = mean</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="c1">#old_temp = temp</span>
+            <span class="c1">#mean_old = mean</span>
+            <span class="n">mean_edge1</span><span class="p">,</span> <span class="n">mean_edge2</span><span class="p">,</span> <span class="n">mean_coord1</span><span class="p">,</span> <span class="n">mean_coord2</span><span class="p">,</span> <span class="n">mean_angle</span> <span class="o">=</span> <span class="n">_geodesic_lam_fast</span><span class="p">(</span>
+                <span class="n">mean_edge1</span><span class="p">,</span> <span class="n">mean_edge2</span><span class="p">,</span> <span class="n">mean_coord1</span><span class="p">,</span> <span class="n">mean_coord2</span><span class="p">,</span> <span class="n">mean_angle</span><span class="p">,</span>
+                <span class="n">sample_edge1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sample_edge2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sample_coord1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sample_coord2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sample_angle</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">lam</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">lam</span><span class="p">),</span> <span class="n">lenmat</span>
+            <span class="p">)</span>
+            <span class="c1">#mean = _geodesic_lam(mean, X.iloc[i], (2*lam)/(n + 2 * lam),lenmat = lenmat)</span>
+            <span class="c1">#dists = _geodesic_dist2d(sample_coord1, sample_coord2, sample_angle, start_index, mean[&#39;x1&#39;],mean[&#39;x2&#39;], mean[&#39;angle&#39;], (int(mean[&#39;edge1&#39;]),int(mean[&#39;edge2&#39;])), cells, lenmat)</span>
+            <span class="c1">#temp = np.sum(dists**2)</span>
+        <span class="c1">#dists = _geodesic_dist2d(sample_coord1, sample_coord2, sample_angle, start_index, mean[&#39;x1&#39;],mean[&#39;x2&#39;], mean[&#39;angle&#39;], (int(mean[&#39;edge1&#39;]),int(mean[&#39;edge2&#39;])), cells, lenmat)</span>
+        <span class="n">dists</span> <span class="o">=</span> <span class="n">_geodesic_dist2d</span><span class="p">(</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="n">sample_coord2</span><span class="p">,</span> <span class="n">sample_angle</span><span class="p">,</span> <span class="n">start_index</span><span class="p">,</span> <span class="n">mean_coord1</span><span class="p">,</span><span class="n">mean_coord2</span><span class="p">,</span> <span class="n">mean_angle</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mean_edge1</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">mean_edge2</span><span class="p">)),</span> <span class="n">cells</span><span class="p">,</span> <span class="n">lenmat</span><span class="p">)</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dists</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">old_error</span> <span class="o">-</span> <span class="n">error</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">old_error</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">mean_edge1</span><span class="p">,</span> <span class="n">mean_edge2</span><span class="p">,</span> <span class="n">mean_coord1</span><span class="p">,</span> <span class="n">mean_coord2</span><span class="p">,</span> <span class="n">mean_angle</span></div>
+
+
+<div class="viewcode-block" id="kmeans_pp"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.kmeans_pp">[docs]</a><span class="k">def</span> <span class="nf">kmeans_pp</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_cluster</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+
+    <span class="c1">#x[&#39;y&#39;] = 1</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c1">#x_np = x.to_numpy()</span>
+    <span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">sample_coord2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">sample_angle</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;angle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">start_index</span> <span class="o">=</span> <span class="n">get_start_indices</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">cells</span> <span class="o">=</span> <span class="n">tuple_2dcells</span><span class="p">()</span>
+    <span class="n">lenmat</span> <span class="o">=</span> <span class="n">b_to_b_lenmat</span><span class="p">()</span>
+    <span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat</span><span class="p">(</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="n">sample_coord2</span><span class="p">,</span> <span class="n">sample_angle</span><span class="p">,</span> <span class="n">start_index</span><span class="p">,</span><span class="n">cells</span><span class="p">,</span> <span class="n">lenmat</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="c1"># pick cluster center</span>
+    <span class="n">center_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">center_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]))</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cluster</span><span class="p">):</span>
+        <span class="n">dk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Dmat</span><span class="p">[</span><span class="n">center_indices</span><span class="p">[:</span><span class="n">k</span><span class="p">]]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># minimum squared distance to one of the cluster</span>
+        <span class="n">dk_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dk</span><span class="p">)</span>
+        <span class="n">center_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">dk</span><span class="o">/</span><span class="n">dk_sum</span> <span class="p">))</span>
+
+    <span class="c1"># iteration (kmeans)</span>
+    <span class="c1"># labeling</span>
+    <span class="n">dists_from_center</span> <span class="o">=</span> <span class="n">Dmat</span><span class="p">[</span><span class="n">center_indices</span><span class="p">]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dists_from_center</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">labels_old</span> <span class="o">=</span> <span class="n">n_cluster</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">labels</span> <span class="c1"># Just making it different from label</span>
+    <span class="n">n_iter</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">cluster_edge1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">cluster_edge2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">cluster_coord1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">)</span>
+    <span class="n">cluster_coord2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">)</span>
+    <span class="n">cluster_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">)</span>
+
+    <span class="n">dists_from_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_cluster</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n_iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="n">labels_old</span><span class="o">==</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()):</span>
+        <span class="n">n_iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># renew cluster center</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">labels</span><span class="o">==</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">cluster_edge1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cluster_edge2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cluster_coord1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cluster_coord2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cluster_angle</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">frechet_mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">dists_from_center</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_geodesic_dist2d</span><span class="p">(</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="n">sample_coord2</span><span class="p">,</span> <span class="n">sample_angle</span><span class="p">,</span> <span class="n">start_index</span><span class="p">,</span> <span class="n">cluster_coord1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">cluster_coord2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cluster_angle</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">cluster_edge1</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">cluster_edge2</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="n">cells</span><span class="p">,</span> <span class="n">lenmat</span><span class="p">)</span>
+        <span class="c1"># renew labels</span>
+        <span class="n">labels_old</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dists_from_center</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1">#print(n_iter)</span>
+        <span class="c1">#print(np.sum(np.min(dists_from_center,axis=0)**2))</span>
+        <span class="c1">#print(dists_from_center)</span>
+        <span class="c1">#print(np.sum(np.min(dists_from_center,axis=0)**2))</span>
+    <span class="n">cluster_centers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;edge1&quot;</span> <span class="p">:</span> <span class="n">cluster_edge1</span><span class="p">,</span>
+        <span class="s2">&quot;edge2&quot;</span> <span class="p">:</span> <span class="n">cluster_edge2</span><span class="p">,</span>
+        <span class="s2">&quot;x1&quot;</span> <span class="p">:</span> <span class="n">cluster_coord1</span><span class="p">,</span>
+        <span class="s2">&quot;x2&quot;</span> <span class="p">:</span> <span class="n">cluster_coord2</span><span class="p">,</span>
+        <span class="s2">&quot;angle&quot;</span> <span class="p">:</span> <span class="n">cluster_angle</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">labels</span><span class="p">,</span> <span class="n">cluster_centers</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yuki Takazawa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
