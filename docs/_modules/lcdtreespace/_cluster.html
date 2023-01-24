@@ -37,7 +37,23 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">calc_integ()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.clustering_accuracy"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.coalescent_1dim"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.exponential_1dim"><code class="docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.frechet_mean"><code class="docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kmeans_pp"><code class="docutils literal notranslate"><span class="pre">kmeans_pp()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_2dim"><code class="docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_1dim"><code class="docutils literal notranslate"><span class="pre">normal_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_bend_1dim"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></li>
 </ul>
 
         </div>
@@ -79,8 +95,71 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="lcmix_cluster"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.lcmix_cluster">[docs]</a><span class="k">def</span> <span class="nf">lcmix_cluster</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_cluster</span><span class="p">,</span> <span class="n">y_random_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pi_init</span> <span class="o">=</span> <span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">pi_random_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="lcmix_cluster"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.lcmix_cluster">[docs]</a><span class="k">def</span> <span class="nf">lcmix_cluster</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_cluster</span><span class="p">,</span> <span class="n">y_random_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pi_init</span> <span class="o">=</span> <span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">pi_random_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">max_em_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Conducts clustering with log-concave mixture model.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : pandas.DataFrame</span>
+<span class="sd">        Sample points. See :py:func:`lcmle_2dim` for the required format.</span>
+
+<span class="sd">    n_cluster : int</span>
+<span class="sd">        Number of clusters.</span>
+
+<span class="sd">    y_random_seed: None or int</span>
+<span class="sd">        Random seed for random initialization of y.</span>
+<span class="sd">        Defauls to None.</span>
+
+<span class="sd">    y_init : str or ndarray</span>
+<span class="sd">        Choice for initialization. Should be one of the following:</span>
+<span class="sd">            - &#39;uniform&#39; : initial pi gives uniform weight to each cluster</span>
+<span class="sd">            - ndarray of length n_cluster.</span>
+<span class="sd">        Defaults to &#39;uniform&#39;</span>
+
+<span class="sd">    pi_random_seed: None or int</span>
+<span class="sd">        Random seed for random initialization of pi.</span>
+<span class="sd">        Defaults to None.</span>
+
+<span class="sd">    max_em_iter : int</span>
+<span class="sd">        Maximum number of iterations of EM algorithm.</span>
+<span class="sd">        Defaults to 100.</span>
+
+<span class="sd">    rtol : float</span>
+<span class="sd">        The criteria for stopping the EM algorithm.</span>
+<span class="sd">        The algorithm terminates when (LogLikeihood[i] - LogLikeihood[i-1])/n &lt; rtol,</span>
+<span class="sd">        where n is the sample size.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    If X is not sorted, run the following command before applying this function.</span>
+<span class="sd">         .. highlight:: python</span>
+<span class="sd">         .. code-block:: python</span>
+
+<span class="sd">            import lcdtreespace as lcd</span>
+<span class="sd">            sort_ind = lcd.argsort_by_orthants(X)</span>
+<span class="sd">            X = X.iloc[sort_ind]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pi : numpy.ndarray</span>
+<span class="sd">        Optimized cluster proportion.</span>
+<span class="sd">    Y : numpy.ndarray</span>
+<span class="sd">        n times n_cluster.</span>
+<span class="sd">        Contains logarithm of each log-concave density at sample points.</span>
+<span class="sd">    Theta : numpy.ndarray</span>
+<span class="sd">        n times n_cluster</span>
+<span class="sd">        Each component of Likelihood.</span>
+<span class="sd">        np.argmax(Theta, axis=1) will create cluster assignments of all points.</span>
+<span class="sd">    LogLikelihoods : List of floats</span>
+<span class="sd">        Loglikelihood at each iteration.</span>
+<span class="sd">    pi_list : List of numpy.ndarray</span>
+<span class="sd">        pi at each iteration.</span>
+<span class="sd">    Y_list : List of numpy.ndarray</span>
+<span class="sd">        Y at each iteration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># conducts clustering with log-concave mixture model.</span>
     <span class="c1"># INPUT:</span>
     <span class="c1">## X : dataframe containing sample points. It should have following columns:</span>

@@ -37,7 +37,23 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">calc_integ()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.clustering_accuracy"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.coalescent_1dim"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.exponential_1dim"><code class="docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.frechet_mean"><code class="docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kmeans_pp"><code class="docutils literal notranslate"><span class="pre">kmeans_pp()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_2dim"><code class="docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_1dim"><code class="docutils literal notranslate"><span class="pre">normal_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_bend_1dim"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></li>
 </ul>
 
         </div>
@@ -226,8 +242,16 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">geodesic_dists</span><span class="o">/</span><span class="n">bw</span><span class="p">)</span><span class="o">**</span><span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="n">bhvc</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="kernel_density_estimate_2dim"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.kernel_density_estimate_2dim">[docs]</a><span class="k">class</span> <span class="nc">kernel_density_estimate_2dim</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="kernel_density_estimate_2dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim">[docs]</a><span class="k">class</span> <span class="nc">kernel_density_estimate_2dim</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Kernel density estimate object in 2dim tree space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="kernel_density_estimate_2dim.__init__"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : pandas.DataFrame</span>
+<span class="sd">            Sample points. See :py:func:`lcmle_2dim` for the required format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_angle</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;angle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -236,9 +260,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span> <span class="o">=</span> <span class="n">b_to_b_lenmat</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_angle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_index</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bhv_c</span> <span class="o">=</span> <span class="n">_bhv_exact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bhv_c</span> <span class="o">=</span> <span class="n">_bhv_exact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="kernel_density_estimate_2dim.pdf"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.kernel_density_estimate_2dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">cell0</span><span class="p">,</span><span class="n">cell1</span><span class="p">):</span>
+<div class="viewcode-block" id="kernel_density_estimate_2dim.pdf"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">cell0</span><span class="p">,</span><span class="n">cell1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the value of the density value at a point.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x1 : float</span>
+<span class="sd">            First coordinate.</span>
+<span class="sd">        x2 : float</span>
+<span class="sd">            Second coordinate.</span>
+<span class="sd">        cell0 : int</span>
+<span class="sd">            First orthant.</span>
+<span class="sd">        cell1 : int</span>
+<span class="sd">            Second orthant.</span>
+<span class="sd">            cell1 should have a larger value than cell0.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Density at the point ``(x1,x2)`` in the orthant ``(cell0, cell1)``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">cell0</span><span class="p">,</span> <span class="n">cell1</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">])</span>
         <span class="n">estimated_density</span> <span class="o">=</span> <span class="n">_kernel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_angle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">,</span> <span class="n">bhvc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bhv_c</span><span class="p">)</span>
@@ -257,14 +300,42 @@
     <span class="k">return</span> <span class="n">Dmat</span>
 
 
-<div class="viewcode-block" id="kernel_density_estimate_1dim"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.kernel_density_estimate_1dim">[docs]</a><span class="k">class</span> <span class="nc">kernel_density_estimate_1dim</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">,</span> <span class="n">n_ort</span><span class="p">):</span>
+<div class="viewcode-block" id="kernel_density_estimate_1dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim">[docs]</a><span class="k">class</span> <span class="nc">kernel_density_estimate_1dim</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Kernel density estimate object in 1dim tree space or more general space of k-spider.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="kernel_density_estimate_1dim.__init__"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">,</span> <span class="n">n_ort</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : numpy.ndarray</span>
+<span class="sd">            coordinates of sample points.</span>
+<span class="sd">        ort : numpy.ndarray</span>
+<span class="sd">            orthants that sample points belong to.</span>
+<span class="sd">            Should have same length as ``x``.</span>
+<span class="sd">        n_ort : int</span>
+<span class="sd">            Number of orthants. (Number of &#39;spiders&#39;.)</span>
+<span class="sd">            In case of one dimensional tree space, ``n_ort`` should be 3.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ort</span> <span class="o">=</span>  <span class="n">ort</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_ort</span> <span class="o">=</span> <span class="n">n_ort</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat_1dim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">)</span>
-<div class="viewcode-block" id="kernel_density_estimate_1dim.pdf"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.kernel_density_estimate_1dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">)</span></div>
+<div class="viewcode-block" id="kernel_density_estimate_1dim.pdf"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the value of the density value at a point.</span>
+
+<span class="sd">        Currently, it only supports when ``n_ort`` = 3.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : coordinate of the point.</span>
+<span class="sd">        cell : orthant of the point.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Density at the point ``x`` in the orthant ``cell``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">cell</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">dist_x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
             <span class="n">dist_x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">x</span>

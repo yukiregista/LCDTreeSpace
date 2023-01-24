@@ -37,7 +37,28 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">argsort_by_orthants()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.calc_integ"><code class="docutils literal notranslate"><span class="pre">calc_integ()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.clustering_accuracy"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.coalescent_1dim"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.exponential_1dim"><code class="docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.frechet_mean"><code class="docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kmeans_pp"><code class="docutils literal notranslate"><span class="pre">kmeans_pp()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_2dim"><code class="docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.list_2dcells"><code class="docutils literal notranslate"><span class="pre">list_2dcells()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_1dim"><code class="docutils literal notranslate"><span class="pre">normal_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_bend_1dim"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.plot_density_2dim"><code class="docutils literal notranslate"><span class="pre">plot_density_2dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.plot_petersen"><code class="docutils literal notranslate"><span class="pre">plot_petersen()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.plot_scatter_2dim"><code class="docutils literal notranslate"><span class="pre">plot_scatter_2dim()</span></code></a></li>
 </ul>
 
         </div>
@@ -159,7 +180,23 @@
     <span class="c1">#input()</span>
     <span class="k">return</span> <span class="n">integ</span>
 
-<div class="viewcode-block" id="calc_integ"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.calc_integ">[docs]</a><span class="k">def</span> <span class="nf">calc_integ</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="calc_integ"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.calc_integ">[docs]</a><span class="k">def</span> <span class="nf">calc_integ</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates integral of exponential of least concave function.</span>
+
+<span class="sd">    If ``y`` is the log-density for sample points ``X``, then the integral should be equal to one.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : numpy.ndarray</span>
+<span class="sd">        Function value of the least concave function.</span>
+<span class="sd">    X : pandas.DataFrame</span>
+<span class="sd">        Sample points. See :py:func:`lcmle_2dim` for the required format.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Integral of exponential of least concave function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># assuming X is sorted</span>
     <span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
     <span class="n">sample_coord2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -405,7 +442,41 @@
 
 
 
-<div class="viewcode-block" id="lcmle_2dim"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.lcmle_2dim">[docs]</a><span class="k">def</span> <span class="nf">lcmle_2dim</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">initialization</span> <span class="o">=</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="s2">&quot;uniform&quot;</span><span class="p">,</span><span class="n">print_objective</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="kc">False</span> <span class="p">):</span>
+<div class="viewcode-block" id="lcmle_2dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.lcmle_2dim">[docs]</a><span class="k">def</span> <span class="nf">lcmle_2dim</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">initialization</span> <span class="o">=</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="s2">&quot;uniform&quot;</span><span class="p">,</span><span class="n">print_objective</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="kc">False</span> <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates two dimensional log-concave m.l.e.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : pandas.DataFrame</span>
+<span class="sd">        Contains sample points. It should have following columns:</span>
+
+<span class="sd">            - edge1, edge2 : integer indicating the edge</span>
+<span class="sd">            - x1, x2 : coordinates of sample points</span>
+<span class="sd">            - angle : arctan(x2/x1)</span>
+<span class="sd">        It should be sorted by orthants before conducting clustering.</span>
+<span class="sd">    initialization : str</span>
+<span class="sd">        Choice for initialization. Should be one of the followings:</span>
+<span class="sd">        - &#39;random&#39; : Random initialization (gaussian)</span>
+<span class="sd">        - &#39;given&#39; : Specified initial value. X should have column named &#39;y&#39; for that specified init value.</span>
+<span class="sd">    random_seed: float</span>
+<span class="sd">        Random seed for random initialization.</span>
+<span class="sd">    weight : str or numpy.ndarray</span>
+<span class="sd">        Weight for each sample point. Should be one of the followings:</span>
+<span class="sd">        - &quot;uniform&quot; : gives uniform weights</span>
+<span class="sd">        - numpy.ndarray : the value of weight</span>
+<span class="sd">        If manually provided, it should sum up to one.</span>
+<span class="sd">    print_objective : bool</span>
+<span class="sd">        Whether to show objective values of each iteration.</span>
+<span class="sd">    history : bool</span>
+<span class="sd">        Whether to return historical ``y`` values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    y : numpy.ndarray</span>
+<span class="sd">        Optimal parameter (log-density).</span>
+<span class="sd">    y_hist : list of numpy.ndarray</span>
+<span class="sd">        History of y values. Only returns it when ``history&#39;&#39; is True.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># calculates two dimensional log-concave m.l.e.</span>
     <span class="c1"># INPUT:</span>
     <span class="c1">## X : dataframe containing sample points. It should have following columns:</span>

@@ -10,20 +10,15 @@ Welcome to lcdtreespace's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+Installation
+------------
+``pip install https://github.com/yukiregista/LCDTreeSpace.git``
 
 API
 ------
-aa
-
+List of functions and classes available.
 
 .. toctree::
+  :maxdepth: 1
 
   lcdtreespace2

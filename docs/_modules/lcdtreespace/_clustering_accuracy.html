@@ -37,7 +37,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></li>
 </ul>
 
         </div>
@@ -73,7 +77,27 @@
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">s</span><span class="o">-</span><span class="n">cm</span>
 
-<div class="viewcode-block" id="clustering_accuracy"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.clustering_accuracy">[docs]</a><span class="k">def</span> <span class="nf">clustering_accuracy</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">estimate_labels</span><span class="p">):</span>
+<div class="viewcode-block" id="clustering_accuracy"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.clustering_accuracy">[docs]</a><span class="k">def</span> <span class="nf">clustering_accuracy</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">estimate_labels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Measures accuracy score of clustering.</span>
+
+<span class="sd">    This function searches optimal matching of true_labels and estimate_labels, and</span>
+<span class="sd">    produce the best accuracy score.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    true_labels : numpy.ndarray</span>
+<span class="sd">        True cluster labels</span>
+<span class="sd">    estimate_labels : numpy.ndarray</span>
+<span class="sd">        Estimated cluster labels</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    accuracy : float</span>
+<span class="sd">        Accuracy score.</span>
+<span class="sd">    indices : tuple of ndarray</span>
+<span class="sd">        Matching of ``true_labels`` and ``estimated_labels``.</span>
+<span class="sd">        Label ``indices[0][i]`` of ``true_labels`` and label ``indices[1][i]`` of ``estimated_labels`` correspond each other in the optimal matching.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">estimate_labels</span><span class="p">)</span>
     <span class="n">indexes</span> <span class="o">=</span> <span class="n">linear_sum_assignment</span><span class="p">(</span><span class="n">_dist_perm</span><span class="p">(</span><span class="n">cm</span><span class="p">))</span>
     <span class="n">cm2</span> <span class="o">=</span> <span class="n">cm</span><span class="p">[</span><span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">indexes</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
@@ -81,7 +105,7 @@
 
     <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="p">(</span><span class="n">indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">indexes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="SSE"><a class="viewcode-back" href="../../lcdtreespace.html#lcdtreespace.SSE">[docs]</a><span class="k">def</span> <span class="nf">SSE</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">SSE</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="n">n_cluster</span> <span class="o">=</span> <span class="n">centers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1"># returns sum of squared error for kmeans</span>
     <span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -94,7 +118,7 @@
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_cluster</span><span class="p">):</span>
         <span class="n">dists_from_center</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">geodesic_dist2d</span><span class="p">(</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="n">sample_coord2</span><span class="p">,</span> <span class="n">sample_angle</span><span class="p">,</span> <span class="n">start_index</span><span class="p">,</span> <span class="n">centers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;x1&#39;</span><span class="p">],</span><span class="n">centers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;x2&#39;</span><span class="p">],</span> <span class="n">centers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;angle&#39;</span><span class="p">],</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">centers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;edge1&#39;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">centers</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">&#39;edge2&#39;</span><span class="p">])),</span> <span class="n">cells</span><span class="p">,</span> <span class="n">lenmat</span><span class="p">)</span>
     <span class="n">SSE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dists_from_center</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">SSE</span></div>
+    <span class="k">return</span> <span class="n">SSE</span>
 </pre></div>
 
            </div>
