@@ -23,8 +23,8 @@ dependencies = ["numpy", "pandas", "scipy", "matplotlib", "scikit-learn"]
 "Homepage" = "https://github.com/yukiregista/LCDTreeSpace"
 #"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
 
-#[tool.setuptools.packages.find]
-#where = ["lcdtreespace/data"]
+[tool.setuptools.packages.find]
+where = ["lcdtreespace/data"]
 #exclude = ["simulate"]
 
 [tool.setuptools]
