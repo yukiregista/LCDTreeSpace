@@ -23,13 +23,13 @@ dependencies = ["numpy", "pandas", "scipy", "matplotlib", "scikit-learn"]
 "Homepage" = "https://github.com/yukiregista/LCDTreeSpace"
 #"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
 
-[tool.setuptools.packages.find]
-where = ["lcdtreespace/data"]
+#[tool.setuptools.packages.find]
+#where = ["lcdtreespace/data"]
 #exclude = ["simulate"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 packages = ["lcdtreespace"]
 
-[tool.setuptools.package-data]
-"lcdtreespace.data" = ["*.csv"]
+#[tool.setuptools.package-data]
+#"lcdtreespace.data" = ["*.csv"]
