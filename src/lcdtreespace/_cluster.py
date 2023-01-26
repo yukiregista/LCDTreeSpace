@@ -9,6 +9,8 @@ from scipy.optimize import minimize
 from ._kde import _create_distance_mat
 from ._normal import normal_uncentered_2dim
 import numpy as np
+import warnings
+from scipy.sparse import SparseEfficiencyWarning
 
 __all__ = ['cluster']
 
@@ -101,6 +103,7 @@ def lcmix_cluster(X, n_cluster, y_random_seed = None, pi_init = 'uniform', pi_ra
     #sort_ind = argsort_by_orthants(X)
     #X = X.iloc[sort_ind]
 
+    warnings.simplefilter("ignore", category=SparseEfficiencyWarning)
     # prepare arguments
     sample_coord1 = X['x1'].values
     sample_coord2 = X['x2'].values

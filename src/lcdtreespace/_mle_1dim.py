@@ -33,14 +33,13 @@ def tree_hull(y,x,labels,n_label):
                     xjl = xj[l]; yjl = yj[l]
                     d = xik/(xik+xjl)
                     y0 = (d * yjl + (1-d) * yik)
-                    if (yik<yjl):
-                        if y0 > max_o:
+                    if y0 > max_o:
+                        if (yik<yjl):
                             max_o = y0
                             top_ort = j; bottom_ort = i
                             lam_index[0]=l; lam_index[1]=k
                             lam[0] = d; lam[1] = (1-d)
-                    else:
-                        if y0 > max_o:
+                        else:
                             max_o = y0
                             top_ort = i; bottom_ort = j
                             lam_index[0]=k; lam_index[1]=l
@@ -60,6 +59,7 @@ def tree_hull(y,x,labels,n_label):
             hull = ConvexHull(points, qhull_options = "QJ")
             support = np.sort(np.unique(hull.simplices[hull.equations[:,1]>0]))
         hull_list.append(hull); support_list.append(support)
+    #print(x[labels==top_ort][lam_index[0]], x[labels==bottom_ort][lam_index[1]])
 
     return hull_list, support_list, max_o, top_ort, bottom_ort, lam_index, lam
 
@@ -116,7 +116,7 @@ def tree_hull_bend(y,x,labels,n_label):
 
 def _obj_grad_1dim(y, x, labels, n_label, bend=False, return_only_integ = False,print_objective=False):
     n_s = len(y)
-    ep = 1e-4
+    ep = 1e-8
     if bend:
         hull_list, support_list, max_o, top_ort, bottom_ort, lam_index, lam = tree_hull_bend(y,x,labels,n_label)
     else:

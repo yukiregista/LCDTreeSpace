@@ -40,6 +40,18 @@ def plot_petersen(X, c=None):
     ax.set_xlim(-1.2,1.2)
     ax.set_ylim(-1.2,1.2)
 
+    for i in range(10):
+        if i==3:
+            ax.annotate(i, ((points + points_inside)[i][0], (points + points_inside)[i][1]) , textcoords = "offset points", xytext=(3,5))
+        elif i==5:
+            ax.annotate(i, ((points + points_inside)[i][0], (points + points_inside)[i][1]) , textcoords = "offset points", xytext=(3,5))
+        elif i==7:
+            ax.annotate(i, ((points + points_inside)[i][0], (points + points_inside)[i][1]) , textcoords = "offset points", xytext=(-5,5))
+        elif i==2:
+            ax.annotate(i, ((points + points_inside)[i][0], (points + points_inside)[i][1]) , textcoords = "offset points", xytext=(-2,7))
+        else:
+            ax.annotate(i, ((points + points_inside)[i][0], (points + points_inside)[i][1]) , textcoords = "offset points", xytext=(0,5))
+
     #P = np.load('results/clustering2_result/iter99size200_seed2_P.npy')
     #labels = (P[:,0] < P[:,1]).astype(int)
 
@@ -47,7 +59,7 @@ def plot_petersen(X, c=None):
     #c = []
     x_coordinate = []
     y_coordinate = []
-    for i in range(len(x)):
+    for i in range(len(X)):
         point = X.iloc[i]
         #label = labels[i]
         vertex0 = np.array(vertices[int(point['edge1'])])
@@ -71,7 +83,7 @@ def plot_density_2dim(density, xmax, ymax):
     ----------
     density : 2 dimensional density object
         Should be one of the followings:
-        
+
             - :py:class:`kernel_density_estimate_2dim`
             - :py:class:`logconcave_density_estimate_2dim`
             - :py:class:`normal_centered_2dim`

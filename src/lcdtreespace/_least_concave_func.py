@@ -225,7 +225,10 @@ def _least_concave_func(y, sample_coord1, sample_coord2, sample_angle, start_ind
                     sample_bd_lam[ind] =ind_lam[remain_indices]
                     sample_bd_y[ind] = ind_lam[remain_indices] @ y
                 else:
-                    hull = ConvexHull(points)
+                    try:
+                        hull = ConvexHull(points)
+                    except:
+                        hull = ConvexHull(points, qhull_options = "QJ")
                     vertices = unique(hull.simplices[hull.equations[:,1]>0])
                     vertices = vertices[vertices < len(remain_indices)]
                     sample_bd_coord[ind] = ind_x[remain_indices][vertices]
@@ -233,7 +236,10 @@ def _least_concave_func(y, sample_coord1, sample_coord2, sample_angle, start_ind
                     sample_bd_y[ind] = ind_lam[remain_indices][vertices] @ y
             else:
                 points = vstack((points, [0,max_o], [ext_x, ext_y]))
-                hull = ConvexHull(points)
+                try:
+                    hull = ConvexHull(points)
+                except:
+                    hull = ConvexHull(points, qhull_options = "QJ")
                 vertices = unique(hull.simplices[hull.equations[:,1]>0])
                 vertices = vertices[vertices < len(remain_indices)]
                 sample_bd_coord[ind] = np.append(ind_x[remain_indices][vertices], ext_x)
@@ -337,7 +343,10 @@ def _least_concave_func(y, sample_coord1, sample_coord2, sample_angle, start_ind
             if len(new_bd_coord[ind]) == 0:
                 before_points = vstack((old_and_now, [0,max_o]))
                 if before_points.shape[0]>2:
-                    hull = ConvexHull(before_points, incremental = True)
+                    try:
+                        hull = ConvexHull(before_points, incremental = True)
+                    except:
+                        hull = ConvexHull(before_points, qhull_options = "QJ", incremental = True)
                     vertices = unique(hull.simplices[hull.equations[:,1]>0])
                     old_now_remains = vertices[vertices < n_oldnow]
                     old_bd_coord[ind] = old_and_now[old_now_remains,0]
@@ -355,12 +364,18 @@ def _least_concave_func(y, sample_coord1, sample_coord2, sample_angle, start_ind
             else:
                 before_points = vstack((old_and_now, [0,max_o]))
                 if before_points.shape[0]>2:
-                    hull = ConvexHull(before_points, incremental = True)#, qhull_options="QJ")
+                    try:
+                        hull = ConvexHull(before_points, incremental = True)#, qhull_options="QJ")
+                    except:
+                        hull = ConvexHull(before_points, qhull_options = "QJ", incremental = True)
                     hull.add_points(hstack((new_bd_coord[ind].reshape(-1,1), new_bd_y[ind].reshape(-1,1))))
                 else:
                     #hull = ConvexHull(before_points, incremental = True, qhull_options="QJ")
                     add = hstack((new_bd_coord[ind].reshape(-1,1), new_bd_y[ind].reshape(-1,1)))
-                    hull = ConvexHull(vstack((before_points, add)))#, qhull_options="QJ")
+                    try:
+                        hull = ConvexHull(vstack((before_points, add)))#, qhull_options="QJ")
+                    except:
+                        hull = ConvexHull(vstack((before_points, add)), qhull_options = "QJ")
                 vertices = unique(hull.simplices[hull.equations[:,1]>0])
                 new_remains =vertices[vertices > n_old + n_now] - n_oldnow - 1
                 old_now_remains = vertices[vertices < n_oldnow]
@@ -412,7 +427,10 @@ def _least_concave_func(y, sample_coord1, sample_coord2, sample_angle, start_ind
         if n_all == 2:
             support_list[i] = np.array([[0,1,2]])
         else:
-            hull = ConvexHull(orthant_coords[i])
+            try:
+                hull = ConvexHull(orthant_coords[i])
+            except:
+                hull = ConvexHull(orthant_coords[i], qhull_options = "QJ")
             hull_list[i] = hull
             support_list[i] = hull.simplices[hull.equations[:,2]>0]
 

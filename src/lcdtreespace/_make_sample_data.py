@@ -61,8 +61,7 @@ def make_clustering_data():
         # print(x)
         # x.to_csv(f"data/clustering/seed{seed}.csv", index=False)
 
-def make_clustering_data3():
-    size = 200
+def make_clustering_data3(size=200):
     base = 3571
     np.random.seed(base)
     seed_size = np.random.randint(10000, size = 4*10)
@@ -75,7 +74,7 @@ def make_clustering_data3():
         samples2 = normal_uncentered_2dim([2,3], np.array([1,1]), 0.25).sample(n1, seed=seed_size[4*i+2])
         samples3 = normal_uncentered_2dim([5,8], np.array([1,1]), 0.25).sample(n2, seed=seed_size[4*i+3])
         samples = pd.concat((samples1, samples2, samples3)).reset_index(drop=True)
-        which = [0 for _ in range(200-n1-n2)] + [1 for _ in range(n1)] + [2 for _ in range(n2)]
+        which = [0 for _ in range(size-n1-n2)] + [1 for _ in range(n1)] + [2 for _ in range(n2)]
         samples['which'] = which
 
         sort_ind = argsort_by_orthants(samples)
