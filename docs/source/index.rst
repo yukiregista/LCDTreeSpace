@@ -14,7 +14,7 @@ Installation
 ------------
 .. code-block::
 
-  pip install https://github.com/yukiregista/LCDTreeSpace.git
+  pip install git+https://github.com/yukiregista/LCDTreeSpace.git
 
 Import
 ------
