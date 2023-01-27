@@ -37,7 +37,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html">LCDTreeSpace API Documentation</a></li>
 </ul>
 
         </div>
@@ -100,14 +100,13 @@
                     <span class="n">xjl</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="n">yjl</span> <span class="o">=</span> <span class="n">yj</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
                     <span class="n">d</span> <span class="o">=</span> <span class="n">xik</span><span class="o">/</span><span class="p">(</span><span class="n">xik</span><span class="o">+</span><span class="n">xjl</span><span class="p">)</span>
                     <span class="n">y0</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span> <span class="o">*</span> <span class="n">yjl</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">yik</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">yik</span><span class="o">&lt;</span><span class="n">yjl</span><span class="p">):</span>
-                        <span class="k">if</span> <span class="n">y0</span> <span class="o">&gt;</span> <span class="n">max_o</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">y0</span> <span class="o">&gt;</span> <span class="n">max_o</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">yik</span><span class="o">&lt;</span><span class="n">yjl</span><span class="p">):</span>
                             <span class="n">max_o</span> <span class="o">=</span> <span class="n">y0</span>
                             <span class="n">top_ort</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span> <span class="n">bottom_ort</span> <span class="o">=</span> <span class="n">i</span>
                             <span class="n">lam_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span><span class="p">;</span> <span class="n">lam_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
                             <span class="n">lam</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span> <span class="n">lam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">d</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="n">y0</span> <span class="o">&gt;</span> <span class="n">max_o</span><span class="p">:</span>
+                        <span class="k">else</span><span class="p">:</span>
                             <span class="n">max_o</span> <span class="o">=</span> <span class="n">y0</span>
                             <span class="n">top_ort</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">bottom_ort</span> <span class="o">=</span> <span class="n">j</span>
                             <span class="n">lam_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="p">;</span> <span class="n">lam_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">l</span>
@@ -127,6 +126,7 @@
             <span class="n">hull</span> <span class="o">=</span> <span class="n">ConvexHull</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">qhull_options</span> <span class="o">=</span> <span class="s2">&quot;QJ&quot;</span><span class="p">)</span>
             <span class="n">support</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">hull</span><span class="o">.</span><span class="n">simplices</span><span class="p">[</span><span class="n">hull</span><span class="o">.</span><span class="n">equations</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]))</span>
         <span class="n">hull_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hull</span><span class="p">);</span> <span class="n">support_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">support</span><span class="p">)</span>
+    <span class="c1">#print(x[labels==top_ort][lam_index[0]], x[labels==bottom_ort][lam_index[1]])</span>
 
     <span class="k">return</span> <span class="n">hull_list</span><span class="p">,</span> <span class="n">support_list</span><span class="p">,</span> <span class="n">max_o</span><span class="p">,</span> <span class="n">top_ort</span><span class="p">,</span> <span class="n">bottom_ort</span><span class="p">,</span> <span class="n">lam_index</span><span class="p">,</span> <span class="n">lam</span>
 
@@ -183,7 +183,7 @@
 
 <span class="k">def</span> <span class="nf">_obj_grad_1dim</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">n_label</span><span class="p">,</span> <span class="n">bend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_only_integ</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span><span class="n">print_objective</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">n_s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">ep</span> <span class="o">=</span> <span class="mf">1e-4</span>
+    <span class="n">ep</span> <span class="o">=</span> <span class="mf">1e-8</span>
     <span class="k">if</span> <span class="n">bend</span><span class="p">:</span>
         <span class="n">hull_list</span><span class="p">,</span> <span class="n">support_list</span><span class="p">,</span> <span class="n">max_o</span><span class="p">,</span> <span class="n">top_ort</span><span class="p">,</span> <span class="n">bottom_ort</span><span class="p">,</span> <span class="n">lam_index</span><span class="p">,</span> <span class="n">lam</span> <span class="o">=</span> <span class="n">tree_hull_bend</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">n_label</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
