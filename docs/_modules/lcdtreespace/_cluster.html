@@ -37,23 +37,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html"><code class="docutils literal notranslate"><span class="pre">calc_integ()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.clustering_accuracy"><code class="docutils literal notranslate"><span class="pre">clustering_accuracy()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.coalescent_1dim"><code class="docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.exponential_1dim"><code class="docutils literal notranslate"><span class="pre">exponential_1dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.frechet_mean"><code class="docutils literal notranslate"><span class="pre">frechet_mean()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_1dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.kmeans_pp"><code class="docutils literal notranslate"><span class="pre">kmeans_pp()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmix_cluster"><code class="docutils literal notranslate"><span class="pre">lcmix_cluster()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_1dim"><code class="docutils literal notranslate"><span class="pre">lcmle_1dim()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.lcmle_2dim"><code class="docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_1dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_1dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.logconcave_density_estimate_2dim"><code class="docutils literal notranslate"><span class="pre">logconcave_density_estimate_2dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_1dim"><code class="docutils literal notranslate"><span class="pre">normal_1dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_bend_1dim"><code class="docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim"><code class="docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lcdtreespace2.html">LCDTreeSpace API Documentation</a></li>
 </ul>
 
         </div>
@@ -92,6 +76,8 @@
 <span class="kn">from</span> <span class="nn">._kde</span> <span class="kn">import</span> <span class="n">_create_distance_mat</span>
 <span class="kn">from</span> <span class="nn">._normal</span> <span class="kn">import</span> <span class="n">normal_uncentered_2dim</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">SparseEfficiencyWarning</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span>
 
@@ -184,6 +170,7 @@
     <span class="c1">#sort_ind = argsort_by_orthants(X)</span>
     <span class="c1">#X = X.iloc[sort_ind]</span>
 
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">SparseEfficiencyWarning</span><span class="p">)</span>
     <span class="c1"># prepare arguments</span>
     <span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
     <span class="n">sample_coord2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
