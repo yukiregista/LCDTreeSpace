@@ -102,8 +102,7 @@ def make_1dim_data():
     os.makedirs(files("lcdtreespace").joinpath("data",'case1'), exist_ok=True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            np.random.seed(n+i)
-            x, labels = normal_1dim(mu=mu, sigma=1).sample(size=n)
+            x, labels = normal_1dim(mu=mu, sigma=1).sample(size=n, seed=10+n+i)
             #d = normal_1dim().rvs(size=n, mu=mu, sigma=1)
             #labels = np.zeros(n)
             #for k in range(n):
@@ -122,8 +121,7 @@ def make_1dim_data():
     os.makedirs(files("lcdtreespace").joinpath("data",'case2'), exist_ok=True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            np.random.seed(n+i)
-            x, labels = exponential_1dim(mu=1, lam=1).sample(size=n)
+            x, labels = exponential_1dim(mu=1, lam=1).sample(size=n, seed=20+n+i)
             #d2 = exponential_1dim().rvs(size=n, mu=1, lam=1)
             #labels = np.zeros(n)
             #for k in range(n):
@@ -145,9 +143,8 @@ def make_1dim_data():
     os.makedirs(files("lcdtreespace").joinpath("data",'case5'), exist_ok= True)
     for n in [100,200,300,500,1000]:
         #os.makedirs(f'brown/sample{n}', exist_ok=True)
-        np.random.seed(n+i)
         for i in range(10):
-            x, labels = normal_bend_1dim(mu=mu,sigma=sigma,k=3).sample(size=n)
+            x, labels = normal_bend_1dim(mu=mu,sigma=sigma,k=3).sample(size=n, seed=50+n+i)
             #d = normal_bend_1dim().rvs(size=n, mu=mu, sigma=sigma,k=3)
             #labels = np.zeros(n)
             #for j in range(n):
@@ -162,8 +159,7 @@ def make_1dim_data():
     os.makedirs(files("lcdtreespace").joinpath("data", 'case6'), exist_ok= True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            np.random.seed(n+i)
-            x, labels = coalescent_1dim(T=1).sample(size=n)
+            x, labels = coalescent_1dim(T=1).sample(size=n, seed=60+n+i)
             #d = coalescent_1dim().rvs(size=n, T=1)
             #labels = np.zeros(n)
             #for j in range(n):
