@@ -99,10 +99,10 @@ def make_1dim_data():
     # this renews all the data, so should be used carefully
     # case1
     mu = 1
-    os.makedirs(files("lcdtreespace.data").joinpath('case1'), exist_ok=True)
+    os.makedirs(files("lcdtreespace").joinpath("data",'case1'), exist_ok=True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            np.random.seed(i)
+            np.random.seed(n+i)
             x, labels = normal_1dim(mu=mu, sigma=1).sample(size=n)
             #d = normal_1dim().rvs(size=n, mu=mu, sigma=1)
             #labels = np.zeros(n)
@@ -116,13 +116,13 @@ def make_1dim_data():
             #x3 = np.sort(d[labels==2] - 2*mu)
             #x = np.concatenate([x1,x2,x3])
             #labels = np.concatenate([ [0 for j in range(len(x1))], [1 for j in range(len(x2))], [2 for j in range(len(x3))] ])
-            np.save(files("lcdtreespace.data").joinpath('case1').joinpath(f"testcase_{n}_{i}_X.npy"),x)
-            np.save(files("lcdtreespace.data").joinpath('case1').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
+            np.save(files("lcdtreespace").joinpath("data", 'case1').joinpath(f"testcase_{n}_{i}_X.npy"),x)
+            np.save(files("lcdtreespace").joinpath("data",'case1').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
 
-    os.makedirs(files("lcdtreespace.data").joinpath('case2'), exist_ok=True)
+    os.makedirs(files("lcdtreespace").joinpath("data",'case2'), exist_ok=True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            np.random.seed(i)
+            np.random.seed(n+i)
             x, labels = exponential_1dim(mu=1, lam=1).sample(size=n)
             #d2 = exponential_1dim().rvs(size=n, mu=1, lam=1)
             #labels = np.zeros(n)
@@ -137,15 +137,15 @@ def make_1dim_data():
             #x3 = np.sort(d2[labels==2] - mu)
             #x = np.concatenate([x1,x2,x3])
             #labels = np.concatenate([ [0 for j in range(len(x1))], [1 for j in range(len(x2))], [2 for j in range(len(x3))] ])
-            np.save(files("lcdtreespace.data").joinpath('case2').joinpath(f"testcase_{n}_{i}_X.npy"),x)
-            np.save(files("lcdtreespace.data").joinpath('case2').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
+            np.save(files("lcdtreespace").joinpath("data", 'case2').joinpath(f"testcase_{n}_{i}_X.npy"),x)
+            np.save(files("lcdtreespace").joinpath("data", 'case2').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
 
     # case 5
     mu=1; sigma=5
-    os.makedirs(files("lcdtreespace.data").joinpath('case5'), exist_ok= True)
-    np.random.seed(100)
+    os.makedirs(files("lcdtreespace").joinpath("data",'case5'), exist_ok= True)
     for n in [100,200,300,500,1000]:
         #os.makedirs(f'brown/sample{n}', exist_ok=True)
+        np.random.seed(n+i)
         for i in range(10):
             x, labels = normal_bend_1dim(mu=mu,sigma=sigma,k=3).sample(size=n)
             #d = normal_bend_1dim().rvs(size=n, mu=mu, sigma=sigma,k=3)
@@ -155,14 +155,14 @@ def make_1dim_data():
             #        continue
             #    else:
             #        labels[j] = np.random.choice([1,2])
-            np.save(files("lcdtreespace.data").joinpath('case5').joinpath(f"testcase_{n}_{i}_X.npy"),x)
-            np.save(files("lcdtreespace.data").joinpath('case5').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
+            np.save(files("lcdtreespace").joinpath("data",'case5').joinpath(f"testcase_{n}_{i}_X.npy"),x)
+            np.save(files("lcdtreespace").joinpath("data",'case5').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
 
     # case 6
-    os.makedirs(files("lcdtreespace.data").joinpath('case6'), exist_ok= True)
-    np.random.seed(100)
+    os.makedirs(files("lcdtreespace").joinpath("data", 'case6'), exist_ok= True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
+            np.random.seed(n+i)
             x, labels = coalescent_1dim(T=1).sample(size=n)
             #d = coalescent_1dim().rvs(size=n, T=1)
             #labels = np.zeros(n)
@@ -171,7 +171,7 @@ def make_1dim_data():
             #        continue
             #    else:
             #        labels[j] = np.random.choice([1,2])
-            np.save(files("lcdtreespace.data").joinpath('case6').joinpath(f"testcase_{n}_{i}_X.npy"),x)
-            np.save(files("lcdtreespace.data").joinpath('case6').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
+            np.save(files("lcdtreespace").joinpath("data",'case6').joinpath(f"testcase_{n}_{i}_X.npy"),x)
+            np.save(files("lcdtreespace").joinpath("data",'case6').joinpath(f"testcase_{n}_{i}_ort.npy"),labels)
 #make_lc_data()
 #make_clustering_data3()
