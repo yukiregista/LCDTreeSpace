@@ -121,7 +121,7 @@ def make_1dim_data():
     os.makedirs(files("lcdtreespace").joinpath("data",'case2'), exist_ok=True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            x, labels = exponential_1dim(mu=1, lam=1).sample(size=n, seed=20+n+i)
+            x, labels = exponential_1dim(mu=1, lam=1).sample(size=n, seed=30+n+i)
             #d2 = exponential_1dim().rvs(size=n, mu=1, lam=1)
             #labels = np.zeros(n)
             #for k in range(n):
@@ -159,7 +159,7 @@ def make_1dim_data():
     os.makedirs(files("lcdtreespace").joinpath("data", 'case6'), exist_ok= True)
     for n in [100,200,300,500,1000]:
         for i in range(10):
-            x, labels = coalescent_1dim(T=1).sample(size=n, seed=60+n+i)
+            x, labels = coalescent_1dim(T=1).sample(size=n, seed=70+n+i)
             #d = coalescent_1dim().rvs(size=n, T=1)
             #labels = np.zeros(n)
             #for j in range(n):
