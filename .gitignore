@@ -131,3 +131,6 @@ dmypy.json
 
 # mac dsstore
 .DS_Store
+
+# test files
+_test*
