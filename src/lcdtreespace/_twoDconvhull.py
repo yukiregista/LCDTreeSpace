@@ -46,14 +46,18 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
     max_ind_list = []
     H_y = np.zeros(n_edge + 6*n)
     H_sample_index = np.zeros(n_edge + 6 * n, dtype=np.int64)
+    counter = 0
     for i in range(len(edge_indices)):
         ind = edge_indices[i]
+        if len(sample_bd_coord[ind]) == 0:
+            continue
         i_x_max_ind = argmax(sample_bd_coord[ind])
         max_ind_list.append(i_x_max_ind)
-        ub_arr[i] = 1/sample_bd_coord[ind][i_x_max_ind]
-        A_ub[i, i] = 1
+        ub_arr[counter] = 1/sample_bd_coord[ind][i_x_max_ind]
+        A_ub[counter, i] = 1
+        counter+=1
 
-    counter = n_edge
+    #counter = n_edge
     ### constraints of the second type
     for i in range(15):
         p_edge, q_edge = cells[i]
