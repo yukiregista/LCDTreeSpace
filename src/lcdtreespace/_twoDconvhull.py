@@ -47,6 +47,7 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
     H_y = np.zeros(n_edge + 6*n)
     H_sample_index = np.zeros(n_edge + 6 * n, dtype=np.int64)
     counter = 0
+    firsttype_index_to_varind = []
     for i in range(len(edge_indices)):
         ind = edge_indices[i]
         if len(sample_bd_coord[ind]) == 0:
@@ -55,8 +56,10 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
         max_ind_list.append(i_x_max_ind)
         ub_arr[counter] = 1/sample_bd_coord[ind][i_x_max_ind]
         A_ub[counter, i] = 1
+        firsttype_index_to_varind.append(i)
         counter+=1
 
+    n_firsttype = counter
     #counter = n_edge
     ### constraints of the second type
     for i in range(15):
@@ -86,18 +89,18 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
                     counter += num_i
                 # counter is already renewed at this point
 
-            q_varind = edge_ind_to_var_ind[p_edge]
+            q_varind = edge_ind_to_var_ind[q_edge]
             q_neighbor = find_neighbors(q_edge)
             q_neighbor_varind = [edge_ind_to_var_ind[item] for item in q_neighbor if item in edge_ind_to_var_ind]
             n_q_neighbor = len(q_neighbor_varind)
-            if n_p_neighbor:
+            if n_q_neighbor:
                 tmp = counter + num_i * n_q_neighbor
                 ub_arr[counter:tmp] = tile(1/q_i, n_q_neighbor)
                 A_ub[counter:tmp, q_varind].fill(1)
                 H_y[counter:tmp] = tile(p_i, n_q_neighbor)
                 H_sample_index[counter:tmp] = tile(i_aranged, n_q_neighbor)
                 for k in range(n_q_neighbor):
-                    A_ub[counter:counter+num_i, q_neighbor_varind[k]] = -q_i/p_i
+                    A_ub[counter:counter+num_i, q_neighbor_varind[k]] = -p_i/q_i
                     counter += num_i
 
     A_ub = A_ub[:counter]
@@ -109,6 +112,8 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
     active_constraints = where(res.slack == 0)[0]
     #print(res.x)
     if len(active_constraints) != n_edge:
+        print(A_ub[:,3][A_ub[:,3]!=0])
+        print(ub_arr)
         print(res)
         print(len(active_constraints), n_edge)
         '''
@@ -149,10 +154,12 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
     simple_indicator = [None]*10
     while count < n_edge:
         index = active_constraints[count]
-        if index<n_edge:
-            ind = edge_indices[index]
+        if index<n_firsttype:
+            ind = edge_indices[firsttype_index_to_varind[index]]
+            #ind = edge_indices[index]
             #A[count] = sample_bd_lam[ind].getrow(max_ind_list[index]).toarray()
-            A[count, index] = 1
+            #A[count, index] = 1
+            A[count, firsttype_index_to_varind[index]] = 1
             dbdy[count] = sample_bd_lam[ind].getrow(max_ind_list[index]).toarray()
             simple_indicator[ind] = 1
         else:
