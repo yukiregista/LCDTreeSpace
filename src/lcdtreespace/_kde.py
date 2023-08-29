@@ -209,7 +209,7 @@ def _create_distance_mat_1dim(x, ort):
     n1 = len(x[ort==0]); n2 = len(x[ort==1])
     Dmat = np.zeros((n, n))
     for a, b in itertools.combinations([i for i in range(len(x))], 2):
-        if bisect([n1,n2],a) == bisect([n1,n2],b):
+        if bisect([n1,n1 + n2],a) == bisect([n1,n1 + n2],b):
             dist = np.abs(x[b] - x[a])
         else:
             dist = x[b] + x[a]
