@@ -89,8 +89,7 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
                 for k in range(n_p_neighbor):
                     A_ub[counter:counter+num_i, p_neighbor_varind[k]] = -q_i/p_i
                     counter += num_i
-                # counter is already renewed at this point
-        
+                # counter is already renewed at this point        
         if q_edge in edge_ind_to_var_ind:
             q_varind = edge_ind_to_var_ind[q_edge]
             q_neighbor = find_neighbors(q_edge)
@@ -125,7 +124,6 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
                 raise Exception("ERROR in twoDconvhull: the number of active constraints doesn't match number of variables.")
         else:
             raise Exception("ERROR in twoDconvhull: the number of active constraints doesn't match number of variables.")
-
         '''
         pattern = 0
         count = 0
