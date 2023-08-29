@@ -10,6 +10,9 @@ import pandas as pd
 
 
 def _link_convex_hull(sample_angle, start_index):
+    # if len(sample_angle)==49:
+    #     import pdb
+    #     pdb.set_trace()
     ort_counts = start_index[1:] - start_index[:-1]
     frontier_angles = deque(sample_angle) # stores angle of each point in the frontier set
     A_ortind = []
@@ -23,7 +26,7 @@ def _link_convex_hull(sample_angle, start_index):
     while len(frontier_ortind) > 0:
         angle = frontier_angles.popleft()
         ortind = frontier_ortind.popleft()
-        if ortind < 10:
+        if ortind < 15:
             # It is the top-dimensional point
             cell = orthants[ortind]
             colors = ['white' for i in range(11)] # for managing DFS visit: last one corresponds to starting point
@@ -43,6 +46,7 @@ def _link_convex_hull(sample_angle, start_index):
             angles = [None for i in range(10)] # for managing angles in DFS:
             survives = [False for i in range(10)] # if that vertex will be added to F and x
 
+            cell = orthants[ortind]
             # depth-first search
             angles[cell[0]] = 0; parents[cell[0]] = None; colors[cell[0]] = 'gray'
             parents, colors, angles, survives= _DFS_visit(cell[0], angles, colors, parents, survives, ort_counts, A_angles, start_index, oo)
@@ -90,7 +94,7 @@ def _DFS_visit(u, angles, colors, parents, survives, ort_counts, A_angles, start
                 cell_sample = np.array(A_angles[start_index[cell_ortind] : start_index[cell_ortind+1]])
                 threshold = np.pi - angles[u]
                 # If angle of any cell_sample is LARGER than this threshold, then u survives
-                if np.any(cell_sample > threshold):
+                if np.any(np.pi/2 - cell_sample < threshold):
                     survives[u]=True
                     colors[u]='black'
                     break

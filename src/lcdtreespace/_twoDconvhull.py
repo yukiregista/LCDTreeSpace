@@ -6,6 +6,7 @@ from numpy import argmax, tile, where, arange
 from scipy.sparse import csr_matrix
 from numpy.linalg import inv
 from ._link_convhull import _link_convex_hull
+from itertools import combinations
 
 
 def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
@@ -46,14 +47,21 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
     max_ind_list = []
     H_y = np.zeros(n_edge + 6*n)
     H_sample_index = np.zeros(n_edge + 6 * n, dtype=np.int64)
+    counter = 0
+    firsttype_index_to_varind = []
     for i in range(len(edge_indices)):
         ind = edge_indices[i]
+        if len(sample_bd_coord[ind]) == 0:
+            continue
         i_x_max_ind = argmax(sample_bd_coord[ind])
         max_ind_list.append(i_x_max_ind)
-        ub_arr[i] = 1/sample_bd_coord[ind][i_x_max_ind]
-        A_ub[i, i] = 1
+        ub_arr[counter] = 1/sample_bd_coord[ind][i_x_max_ind]
+        A_ub[counter, i] = 1
+        firsttype_index_to_varind.append(i)
+        counter+=1
 
-    counter = n_edge
+    n_firsttype = counter
+    #counter = n_edge
     ### constraints of the second type
     for i in range(15):
         p_edge, q_edge = cells[i]
@@ -69,6 +77,7 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
         if p_edge in edge_ind_to_var_ind:
             p_varind = edge_ind_to_var_ind[p_edge]
             p_neighbor = find_neighbors(p_edge)
+            p_neighbor.remove(q_edge)
             p_neighbor_varind = [edge_ind_to_var_ind[item] for item in p_neighbor if item in edge_ind_to_var_ind]
             n_p_neighbor = len(p_neighbor_varind)
             if n_p_neighbor:
@@ -81,32 +90,42 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
                     A_ub[counter:counter+num_i, p_neighbor_varind[k]] = -q_i/p_i
                     counter += num_i
                 # counter is already renewed at this point
-
-            q_varind = edge_ind_to_var_ind[p_edge]
+        
+        if q_edge in edge_ind_to_var_ind:
+            q_varind = edge_ind_to_var_ind[q_edge]
             q_neighbor = find_neighbors(q_edge)
+            q_neighbor.remove(p_edge)
             q_neighbor_varind = [edge_ind_to_var_ind[item] for item in q_neighbor if item in edge_ind_to_var_ind]
             n_q_neighbor = len(q_neighbor_varind)
-            if n_p_neighbor:
+            if n_q_neighbor:
                 tmp = counter + num_i * n_q_neighbor
                 ub_arr[counter:tmp] = tile(1/q_i, n_q_neighbor)
                 A_ub[counter:tmp, q_varind].fill(1)
                 H_y[counter:tmp] = tile(p_i, n_q_neighbor)
                 H_sample_index[counter:tmp] = tile(i_aranged, n_q_neighbor)
                 for k in range(n_q_neighbor):
-                    A_ub[counter:counter+num_i, q_neighbor_varind[k]] = -q_i/p_i
+                    A_ub[counter:counter+num_i, q_neighbor_varind[k]] = -p_i/q_i
                     counter += num_i
-
     A_ub = A_ub[:counter]
     ub_arr = ub_arr[:counter]
-    res = linprog(c, A_ub = A_ub, b_ub = ub_arr, method="highs-ds")
-    #print(1/res.x)
-    #print(1/ub_arr[:n_edge])
-    #print(np.where(res.slack == 0))
+
+    res = linprog(c, A_ub = A_ub, b_ub = ub_arr, method="highs")
+
     active_constraints = where(res.slack == 0)[0]
-    #print(res.x)
     if len(active_constraints) != n_edge:
-        print(res)
-        print(len(active_constraints), n_edge)
+        if len(active_constraints) > n_edge:
+            for item in combinations([i for i in range(len(active_constraints))], n_edge):
+                ok = False
+                rank = np.linalg.matrix_rank(A_ub[active_constraints[list(item)]])
+                if rank == n_edge:
+                    active_constraints = active_constraints[list(item)]
+                    ok = True
+                    break
+            if ok is False:
+                raise Exception("ERROR in twoDconvhull: the number of active constraints doesn't match number of variables.")
+        else:
+            raise Exception("ERROR in twoDconvhull: the number of active constraints doesn't match number of variables.")
+
         '''
         pattern = 0
         count = 0
@@ -136,7 +155,6 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
         print(res.slack); input()
         print(res.con); input()
         '''
-        raise Exception("ERROR in twoDconvhull: the number of active constraints doesn't match number of variables.")
 
     pattern = 0
     count = 0
@@ -145,10 +163,12 @@ def _twoDconvhull(sample_coord1, sample_coord2, sample_angle, start_index,
     simple_indicator = [None]*10
     while count < n_edge:
         index = active_constraints[count]
-        if index<n_edge:
-            ind = edge_indices[index]
+        if index<n_firsttype:
+            ind = edge_indices[firsttype_index_to_varind[index]]
+            #ind = edge_indices[index]
             #A[count] = sample_bd_lam[ind].getrow(max_ind_list[index]).toarray()
-            A[count, index] = 1
+            #A[count, index] = 1
+            A[count, firsttype_index_to_varind[index]] = 1
             dbdy[count] = sample_bd_lam[ind].getrow(max_ind_list[index]).toarray()
             simple_indicator[ind] = 1
         else:
