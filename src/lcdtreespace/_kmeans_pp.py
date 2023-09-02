@@ -396,6 +396,10 @@ def frechet_mean(X, max_iter = 5000, eps = 1e-7):
                 sample_edge1[i], sample_edge2[i], sample_coord1[i], sample_coord2[i], sample_angle[i],
                 (2*lam)/(n + 2 * lam), lenmat
             )
+            if mean_edge1 > mean_edge2:
+                tmp_edge = mean_edge1; mean_edge1 = mean_edge2; mean_edge2 = tmp_edge
+                tmp_coord = mean_coord1; mean_coord1 = mean_coord2; mean_coord2 = tmp_coord
+                mean_angle = np.pi/2 - mean_angle
             #mean = _geodesic_lam(mean, X.iloc[i], (2*lam)/(n + 2 * lam),lenmat = lenmat)
             #dists = _geodesic_dist2d(sample_coord1, sample_coord2, sample_angle, start_index, mean['x1'],mean['x2'], mean['angle'], (int(mean['edge1']),int(mean['edge2'])), cells, lenmat)
             #temp = np.sum(dists**2)
