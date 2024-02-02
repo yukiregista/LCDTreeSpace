@@ -5,6 +5,8 @@ from numpy import hstack, where, argmin, arctan2, exp, sqrt
 import scipy.stats as stats
 from bisect import bisect
 import itertools
+import numbers
+import sys
 
 def _geodesic_dist2d(sample_coord1, sample_coord2, sample_angle, start_index, new_coord1,new_coord2, new_angle, cell_new, cells, lenmat):
     # not efficient yet
@@ -162,12 +164,18 @@ def _kernel(x, cell, sample_coord1, sample_coord2, sample_angle, start_index, ce
 class kernel_density_estimate_2dim():
     """Kernel density estimate object in 2dim tree space.
     """
-    def __init__(self,X):
+    def __init__(self,X,bandwidth="nn",nn_prop=0.2):
         """
         Parameters
         ----------
         X : pandas.DataFrame
             Sample points. See :py:func:`lcmle_2dim` for the required format.
+        bandwidth : float or string
+            If float, bandwidth. 
+            If string, it should be one of the followings:
+                "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.
+        nn_prop : float
+            Quantile used for "nn" approach. Ignored if ``bandwidth`` is not "nn".
         """
         self.sample_coord1 = X['x1'].values
         self.sample_coord2 = X['x2'].values
@@ -175,8 +183,16 @@ class kernel_density_estimate_2dim():
         self.start_index = get_start_indices(X)
         self.cells = tuple_2dcells()
         self.lenmat = b_to_b_lenmat()
-        self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)
-        self.bw = _bw_nn(self.Dmat)
+        #self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)
+        if isinstance(bandwidth, numbers.Number):
+            assert bandwidth>0, "bandwidth has to be positive"
+            self.bw = np.array([bandwidth for i in range(X.shape[0])])
+        elif isinstance(bandwidth, str):
+            if bandwidth == "nn":
+                self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)
+                self.bw = _bw_nn(self.Dmat, prop=nn_prop)
+            else:
+                sys.exit("Invalid bandwidth argument.")
         self.bhv_c = _bhv_exact(self.sample_coord1,self.sample_coord2, self.bw)
 
     def pdf(self,x1,x2,cell0,cell1):
@@ -220,7 +236,7 @@ def _create_distance_mat_1dim(x, ort):
 class kernel_density_estimate_1dim():
     """Kernel density estimate object in 1dim tree space or more general space of k-spider.
     """
-    def __init__(self, x, ort, n_ort):
+    def __init__(self, x, ort, n_ort, bandwidth="nn", nn_prop = 0.2):
         """
         Parameters
         ----------
@@ -232,12 +248,25 @@ class kernel_density_estimate_1dim():
         n_ort : int
             Number of orthants. (Number of 'spiders'.)
             In case of one dimensional tree space, ``n_ort`` should be 3.
+        bandwidth : float or string
+            If float, bandwidth. 
+            If string, it should be one of the followings:
+                "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.
+        nn_prop : float
+            Quantile used for "nn" approach. Ignored if ``bandwidth`` is not "nn".
         """
         self.x = x
         self.ort =  ort
         self.n_ort = n_ort
-        self.Dmat = _create_distance_mat_1dim(x, ort)
-        self.bw = _bw_nn(self.Dmat)
+        if isinstance(bandwidth, numbers.Number):
+            assert bandwidth>0, "bandwidth has to be positive"
+            self.bw = np.array([bandwidth for i in range(len(x))])
+        elif isinstance(bandwidth, str):
+            if bandwidth == "nn":
+                self.Dmat = _create_distance_mat_1dim(x, ort)
+                self.bw = _bw_nn(self.Dmat, prop=nn_prop)
+            else:
+                sys.exit("Invalid bandwidth argument.")
     def pdf(self, x, cell):
         """ Returns the value of the density value at a point.
 
@@ -266,5 +295,7 @@ class kernel_density_estimate_1dim():
             dist_x1 = self.x[self.ort==1]+x
             dist_x2 = np.abs(self.x[self.ort==2]-x)
         dists = np.concatenate((dist_x0, dist_x1, dist_x2))
-        bhvc = np.sqrt(np.pi * self.bw**2)*(1 + stats.norm.cdf(-np.sqrt(2) * x/ self.bw))
-        return (np.exp(-np.abs(dists/self.bw)**2) / bhvc).mean()
+        xs = np.concatenate((self.x[self.ort==0], self.x[self.ort==1], self.x[self.ort==2]))
+        bw = np.concatenate((self.bw[self.ort==0], self.bw[self.ort==1], self.bw[self.ort==2]))
+        bhvc = np.sqrt(2 * np.pi)*bw*(1 + stats.norm.cdf(-xs/ bw))
+        return (np.exp(-np.abs(dists/bw)**2/2) / bhvc).mean()

@@ -182,6 +182,8 @@ class logconcave_density_estimate_1dim():
             px = 0
         elif x==0:
             px = np.exp(self.max_o)
+        elif x == self.xmaxs[cell]:
+            px = np.exp(hull.points[support[-1]][1])
         else:
             support_index = bisect(hull.points[support, 0], x)
             below = hull.points[support[support_index-1]]
