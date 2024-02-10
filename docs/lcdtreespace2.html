@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LCDTreeSpace API Documentation &mdash; lcdtreespace  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> lcdtreespace
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            lcdtreespace
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -140,7 +145,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">LCDTreeSpace API Documentation</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/yukiregista/LCDTreeSpace/blob/develop/docs/source/lcdtreespace2.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -152,14 +157,14 @@
            <div itemprop="articleBody">
              
   <section id="module-lcdtreespace">
-<span id="lcdtreespace-api-documentation"></span><h1>LCDTreeSpace API Documentation<a class="headerlink" href="#module-lcdtreespace" title="Permalink to this heading"></a></h1>
+<span id="lcdtreespace-api-documentation"></span><h1>LCDTreeSpace API Documentation<a class="headerlink" href="#module-lcdtreespace" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.argsort_by_orthants">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">argsort_by_orthants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_utils.html#argsort_by_orthants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.argsort_by_orthants" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">argsort_by_orthants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_utils.html#argsort_by_orthants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.argsort_by_orthants" title="Link to this definition"></a></dt>
 <dd><p>Sort sample points DataFrame by orthants.</p>
 <p>Before conducting any estimation, DataFrame X should be sorted using this function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>X</strong> (<em>pandas.DataFrame</em>) – See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p>
 </dd>
 </dl>
@@ -167,20 +172,20 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.calc_integ">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">calc_integ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_optimize.html#calc_integ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.calc_integ" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">calc_integ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_optimize.html#calc_integ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.calc_integ" title="Link to this definition"></a></dt>
 <dd><p>Calculates integral of exponential of least concave function.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">y</span></code> is the log-density for sample points <code class="docutils literal notranslate"><span class="pre">X</span></code>, then the integral should be equal to one.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Function value of the least concave function.</p></li>
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Integral of exponential of least concave function.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -188,18 +193,18 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.clustering_accuracy">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">clustering_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_clustering_accuracy.html#clustering_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.clustering_accuracy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">clustering_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_clustering_accuracy.html#clustering_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.clustering_accuracy" title="Link to this definition"></a></dt>
 <dd><p>Measures accuracy score of clustering.</p>
 <p>This function searches optimal matching of true_labels and estimate_labels, and
 produce the best accuracy score.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>true_labels</strong> (<em>numpy.ndarray</em>) – True cluster labels</p></li>
 <li><p><strong>estimate_labels</strong> (<em>numpy.ndarray</em>) – Estimated cluster labels</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>accuracy</strong> (<em>float</em>) – Accuracy score.</p></li>
 <li><p><strong>indices</strong> (<em>tuple of ndarray</em>) – Matching of <code class="docutils literal notranslate"><span class="pre">true_labels</span></code> and <code class="docutils literal notranslate"><span class="pre">estimated_labels</span></code>.
@@ -212,15 +217,15 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.coalescent_1dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">coalescent_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">coalescent_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Density object corresponding to simple coalescent process.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.coalescent_1dim.T">
-<span class="sig-name descname"><span class="pre">T</span></span><a class="headerlink" href="#lcdtreespace.coalescent_1dim.T" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">T</span></span><a class="headerlink" href="#lcdtreespace.coalescent_1dim.T" title="Link to this definition"></a></dt>
 <dd><p>The length of internal edge of the species tree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -228,9 +233,9 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.coalescent_1dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>T</strong> (<em>float</em>) – The length of internal edge of the species tree.</p>
 </dd>
 </dl>
@@ -238,19 +243,19 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.coalescent_1dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>coordinate</em><em> of </em><em>the point.</em>) – </p></li>
 <li><p><strong>cell</strong> (<em>orthant</em><em> of </em><em>the point.</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -258,16 +263,16 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.coalescent_1dim.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim.sample" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#coalescent_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.coalescent_1dim.sample" title="Link to this definition"></a></dt>
 <dd><p>Sample from the density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – sample size.</p></li>
 <li><p><strong>seed</strong> (<em>int</em>) – random seed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – Coordinates of sample points.</p></li>
 <li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – Orthants of sample points.</p></li>
@@ -281,15 +286,15 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.exponential_1dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">exponential_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">exponential_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Exponential-like density in 1dim tree space.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.exponential_1dim.mu">
-<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.exponential_1dim.mu" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.exponential_1dim.mu" title="Link to this definition"></a></dt>
 <dd><p>Location parameter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -297,10 +302,10 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.exponential_1dim.lam">
-<span class="sig-name descname"><span class="pre">lam</span></span><a class="headerlink" href="#lcdtreespace.exponential_1dim.lam" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lam</span></span><a class="headerlink" href="#lcdtreespace.exponential_1dim.lam" title="Link to this definition"></a></dt>
 <dd><p>Rate parameter</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -308,9 +313,9 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.exponential_1dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mu</strong> (<em>float</em>) – Location parameter.</p></li>
 <li><p><strong>lam</strong> (<em>float</em>) – Rate parameter</p></li>
@@ -321,19 +326,19 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.exponential_1dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>coordinate</em><em> of </em><em>the point.</em>) – </p></li>
 <li><p><strong>cell</strong> (<em>orthant</em><em> of </em><em>the point.</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -341,16 +346,16 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.exponential_1dim.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim.sample" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#exponential_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.exponential_1dim.sample" title="Link to this definition"></a></dt>
 <dd><p>Sample from the density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – sample size.</p></li>
 <li><p><strong>seed</strong> (<em>int</em>) – random seed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – Coordinates of sample points.</p></li>
 <li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – Orthants of sample points.</p></li>
@@ -364,11 +369,11 @@ Label <code class="docutils literal notranslate"><span class="pre">indices[0][i]
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.frechet_mean">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">frechet_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kmeans_pp.html#frechet_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.frechet_mean" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">frechet_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kmeans_pp.html#frechet_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.frechet_mean" title="Link to this definition"></a></dt>
 <dd><p>Computes frechet mean of sample points.</p>
 <p>It uses the proximal point algorithm.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
 <li><p><strong>max_iter</strong> (<em>int</em>) – Maximum number of iterations of proximal point algorithm.
@@ -376,7 +381,7 @@ Defaults to 1000.</p></li>
 <li><p><strong>eps</strong> (<em>float</em>) – When sum of squared distances from current mean estimates does not decrease by more than <code class="docutils literal notranslate"><span class="pre">eps</span></code>, then the algorithm terminates.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>mean_edge1</strong> (<em>int</em>) – First orthant of the mean.</p></li>
 <li><p><em>mean_edge2</em> – Second orthant of the mean.</p></li>
@@ -391,10 +396,10 @@ Defaults to 1000.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.ise_1dim">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">ise_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_ise.html#ise_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.ise_1dim" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">ise_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_ise.html#ise_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.ise_1dim" title="Link to this definition"></a></dt>
 <dd><p>Computation of integrated squared error (ise) in 1dim tree space.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>true_density</strong> (<em>density object</em>) – </p></li>
 <li><p><strong>estimate_density</strong> (<em>density object</em>) – </p></li>
@@ -405,7 +410,7 @@ Defaults to 1e-4.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <dl class="simple">
-<dt>Both <a href="#id1"><span class="problematic" id="id2">``</span></a>true_density’’ and <a href="#id3"><span class="problematic" id="id4">``</span></a>estimate_density’’ should be one of the followings:</dt><dd><ul class="simple">
+<dt>Both <code class="docutils literal notranslate"><span class="pre">true_density</span></code> and <code class="docutils literal notranslate"><span class="pre">estimate_density</span></code> should be one of the followings:</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#lcdtreespace.normal_1dim" title="lcdtreespace.normal_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_1dim</span></code></a></p></li>
 <li><p><a class="reference internal" href="#lcdtreespace.normal_bend_1dim" title="lcdtreespace.normal_bend_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_bend_1dim</span></code></a></p></li>
 <li><p><a class="reference internal" href="#lcdtreespace.coalescent_1dim" title="lcdtreespace.coalescent_1dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">coalescent_1dim</span></code></a></p></li>
@@ -416,7 +421,7 @@ Defaults to 1e-4.</p></li>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
 <li><p><strong>ise</strong> (<em>Integrated squared error</em>)</p></li>
 <li><p><strong>err</strong> (<em>Error of ise.</em>)</p></li>
@@ -428,10 +433,10 @@ Defaults to 1e-4.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.ise_2dim">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">ise_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_ise.html#ise_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.ise_2dim" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">ise_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">true_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_ise.html#ise_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.ise_2dim" title="Link to this definition"></a></dt>
 <dd><p>Computation of integrated squared error (ise) in 2dim tree space.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>true_density</strong> (<em>density object</em>) – </p></li>
 <li><p><strong>estimate_density</strong> (<em>density object</em>) – </p></li>
@@ -442,7 +447,7 @@ Defaults to 1e-4.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <dl class="simple">
-<dt>Both <a href="#id5"><span class="problematic" id="id6">``</span></a>true_density’’ and <a href="#id7"><span class="problematic" id="id8">``</span></a>estimate_density’’ should be one of the followings:</dt><dd><ul class="simple">
+<dt>Both <code class="docutils literal notranslate"><span class="pre">true_density</span></code> and <code class="docutils literal notranslate"><span class="pre">estimate_density</span></code> should be one of the followings:</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#lcdtreespace.normal_centered_2dim" title="lcdtreespace.normal_centered_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_centered_2dim</span></code></a></p></li>
 <li><p><a class="reference internal" href="#lcdtreespace.normal_uncentered_2dim" title="lcdtreespace.normal_uncentered_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">normal_uncentered_2dim</span></code></a></p></li>
 <li><p><a class="reference internal" href="#lcdtreespace.kernel_density_estimate_2dim" title="lcdtreespace.kernel_density_estimate_2dim"><code class="xref py py-class docutils literal notranslate"><span class="pre">kernel_density_estimate_2dim</span></code></a></p></li>
@@ -451,7 +456,7 @@ Defaults to 1e-4.</p></li>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
 <li><p><strong>ise</strong> (<em>Integrated squared error</em>)</p></li>
 <li><p><strong>err</strong> (<em>Error of ise.</em>)</p></li>
@@ -463,20 +468,24 @@ Defaults to 1e-4.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_1dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">kernel_density_estimate_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">kernel_density_estimate_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Kernel density estimate object in 1dim tree space or more general space of k-spider.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_1dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – coordinates of sample points.</p></li>
 <li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – orthants that sample points belong to.
 Should have same length as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
 <li><p><strong>n_ort</strong> (<em>int</em>) – Number of orthants. (Number of ‘spiders’.)
 In case of one dimensional tree space, <code class="docutils literal notranslate"><span class="pre">n_ort</span></code> should be 3.</p></li>
+<li><p><strong>bandwidth</strong> (<em>float</em><em> or </em><em>string</em>) – If float, bandwidth.
+If string, it should be one of the followings:
+- “nn”: nearest neighbor approach. Bandwidth is set to the <code class="docutils literal notranslate"><span class="pre">nn_prop</span></code> quantile of distances to other points.</p></li>
+<li><p><strong>nn_prop</strong> (<em>float</em>) – Quantile used for “nn” approach. Ignored if <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is not “nn”.</p></li>
 </ul>
 </dd>
 </dl>
@@ -484,20 +493,20 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_1dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <p>Currently, it only supports when <code class="docutils literal notranslate"><span class="pre">n_ort</span></code> = 3.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>coordinate</em><em> of </em><em>the point.</em>) – </p></li>
 <li><p><strong>cell</strong> (<em>orthant</em><em> of </em><em>the point.</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -507,25 +516,31 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_2dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">kernel_density_estimate_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">kernel_density_estimate_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Kernel density estimate object in 2dim tree space.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_2dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
+<li><p><strong>bandwidth</strong> (<em>float</em><em> or </em><em>string</em>) – If float, bandwidth.
+If string, it should be one of the followings:
+- “nn”: nearest neighbor approach. Bandwidth is set to the <code class="docutils literal notranslate"><span class="pre">nn_prop</span></code> quantile of distances to other points.</p></li>
+<li><p><strong>nn_prop</strong> (<em>float</em>) – Quantile used for “nn” approach. Ignored if <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is not “nn”.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_2dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x1</strong> (<em>float</em>) – First coordinate.</p></li>
 <li><p><strong>x2</strong> (<em>float</em>) – Second coordinate.</p></li>
@@ -534,10 +549,10 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 cell1 should have a larger value than cell0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">(x1,x2)</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">(cell0,</span> <span class="pre">cell1)</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -547,10 +562,10 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.kmeans_pp">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">kmeans_pp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cluster</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kmeans_pp.html#kmeans_pp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kmeans_pp" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">kmeans_pp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cluster</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kmeans_pp.html#kmeans_pp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kmeans_pp" title="Link to this definition"></a></dt>
 <dd><p>Conducts k-means++ algorithm.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
 <li><p><strong>n_cluster</strong> (<em>int</em>) – Number of clusters.</p></li>
@@ -560,7 +575,7 @@ Defaults to 10.</p></li>
 Defaults to 1000.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>labels</strong> (<em>numpy.ndarray</em>) – Estimated cluster labels.</p></li>
 <li><p><strong>cluster_centers</strong> (<em>pandas.DataFrame</em>) – DataFrame containing cluster centers (with the same format as input DataFrame).</p></li>
@@ -572,22 +587,20 @@ Defaults to 1000.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.lcmix_cluster">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">lcmix_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi_random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_em_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_cluster.html#lcmix_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.lcmix_cluster" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">lcmix_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi_random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_em_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_cluster.html#lcmix_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.lcmix_cluster" title="Link to this definition"></a></dt>
 <dd><p>Conducts clustering with log-concave mixture model.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
 <li><p><strong>n_cluster</strong> (<em>int</em>) – Number of clusters.</p></li>
 <li><p><strong>y_random_seed</strong> (<em>None</em><em> or </em><em>int</em>) – Random seed for random initialization of y.
 Defauls to None.</p></li>
-<li><p><strong>y_init</strong> (<em>str</em><em> or </em><em>ndarray</em>) – <dl class="simple">
-<dt>Choice for initialization. Should be one of the following:</dt><dd><ul>
-<li><p>’uniform’ : initial pi gives uniform weight to each cluster</p></li>
+<li><p><strong>y_init</strong> (<em>str</em><em> or </em><em>ndarray</em>) – <p>Choice for initialization. Should be one of the following:</p>
+<ul>
+<li><p>”uniform” : initial pi gives uniform weight to each cluster</p></li>
 <li><p>ndarray of length n_cluster.</p></li>
 </ul>
-</dd>
-</dl>
 <p>Defaults to ‘uniform’</p>
 </p></li>
 <li><p><strong>pi_random_seed</strong> (<em>None</em><em> or </em><em>int</em>) – Random seed for random initialization of pi.
@@ -601,16 +614,16 @@ where n is the sample size.</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<dl>
-<dt>If X is not sorted, run the following command before applying this function.</dt><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lcdtreespace</span> <span class="k">as</span> <span class="nn">lcd</span>
+<p>If X is not sorted, run the following command before applying this function.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lcdtreespace</span> <span class="k">as</span> <span class="nn">lcd</span>
 <span class="n">sort_ind</span> <span class="o">=</span> <span class="n">lcd</span><span class="o">.</span><span class="n">argsort_by_orthants</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sort_ind</span><span class="p">]</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><ul class="simple">
 <li><p><strong>pi</strong> (<em>numpy.ndarray</em>) – Optimized cluster proportion.</p></li>
 <li><p><strong>Y</strong> (<em>numpy.ndarray</em>) – n times n_cluster.
@@ -629,10 +642,10 @@ np.argmax(Theta, axis=1) will create cluster assignments of all points.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.lcmle_1dim">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">lcmle_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_mle_1dim.html#lcmle_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.lcmle_1dim" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">lcmle_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_mle_1dim.html#lcmle_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.lcmle_1dim" title="Link to this definition"></a></dt>
 <dd><p>Calculates one dimensional log-concave m.l.e.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – coordinates of sample points.</p></li>
 <li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – orthants that sample points belong to.
@@ -641,16 +654,11 @@ Should have same length as x.</p></li>
 In case of one dimensional tree space, n_ort should be 3.</p></li>
 <li><p><strong>bend</strong> (<em>bool</em><em>, </em><em>optional</em>) – Indicator for allowing bend at the origin point.
 Defaults to False.</p></li>
-<li><p><strong>initial</strong> (<em>str</em><em> or </em><em>nd.array</em><em>, </em><em>optional</em>) – <p>How to set initial values of optimized parameters.
-Should be one of the followings:</p>
-<blockquote>
-<div><ul>
-<li><p>’random’ : initial value is set randomly.random numbers can be controled by setting random_seed argument.</p></li>
-<li><p>numpy.ndarray : used as initial value. The length of the array should be the same size as x and ort.</p></li>
-</ul>
-</div></blockquote>
-<p>Defaults to “random”.</p>
-</p></li>
+<li><p><strong>initial</strong> (<em>str</em><em> or </em><em>nd.array</em><em>, </em><em>optional</em>) – How to set initial values of optimized parameters.
+Should be one of the followings:
+- ‘random’ : initial value is set randomly.random numbers can be controled by setting random_seed argument.
+- numpy.ndarray : used as initial value. The length of the array should be the same size as x and ort.
+Defaults to “random”.</p></li>
 <li><p><strong>random_seed</strong> (<em>None</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – Random seed to use when initial is “random”.
 Defaults to None.</p></li>
 <li><p><strong>print_objective</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show objective values of each run.
@@ -659,10 +667,10 @@ Defaults to False.</p></li>
 Defaults to 5.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Optimal parameter</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray</p>
 </dd>
 </dl>
@@ -670,37 +678,36 @@ Defaults to 5.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.lcmle_2dim">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">lcmle_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_optimize.html#lcmle_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.lcmle_2dim" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">lcmle_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_optimize.html#lcmle_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.lcmle_2dim" title="Link to this definition"></a></dt>
 <dd><p>Calculates two dimensional log-concave m.l.e.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – <p>Contains sample points. It should have following columns:</p>
-<blockquote>
-<div><ul>
+<ul>
 <li><p>edge1, edge2 : integer indicating the edge</p></li>
 <li><p>x1, x2 : coordinates of sample points</p></li>
 <li><p>angle : arctan(x2/x1)</p></li>
 </ul>
-</div></blockquote>
 <p>It should be sorted by orthants before conducting clustering.</p>
 </p></li>
 <li><p><strong>initialization</strong> (<em>str</em>) – Choice for initialization. Should be one of the followings:
 - ‘random’ : Random initialization (gaussian)
 - ‘given’ : Specified initial value. X should have column named ‘y’ for that specified init value.</p></li>
 <li><p><strong>random_seed</strong> (<em>float</em>) – Random seed for random initialization.</p></li>
-<li><p><strong>weight</strong> (<em>str</em><em> or </em><em>numpy.ndarray</em>) – Weight for each sample point. Should be one of the followings:
+<li><p><strong>weight</strong> (<em>str</em><em> or </em><em>numpy.ndarray</em>) – <p>Weight for each sample point. Should be one of the followings:
 - “uniform” : gives uniform weights
-- numpy.ndarray : the value of weight
-If manually provided, it should sum up to one.</p></li>
+- numpy.ndarray : the value of weight</p>
+<p>If manually provided, it should sum up to one.</p>
+</p></li>
 <li><p><strong>print_objective</strong> (<em>bool</em>) – Whether to show objective values of each iteration.</p></li>
 <li><p><strong>history</strong> (<em>bool</em>) – Whether to return historical <code class="docutils literal notranslate"><span class="pre">y</span></code> values.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Optimal parameter (log-density).</p></li>
-<li><p><strong>y_hist</strong> (<em>list of numpy.ndarray</em>) – History of y values. Only returns it when <a href="#id9"><span class="problematic" id="id10">``</span></a>history’’ is True.</p></li>
+<li><p><strong>y_hist</strong> (<em>list of numpy.ndarray</em>) – History of y values. Only returns it when <code class="docutils literal notranslate"><span class="pre">history</span></code> is True.</p></li>
 </ul>
 </p>
 </dd>
@@ -709,7 +716,7 @@ If manually provided, it should sum up to one.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.list_2dcells">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">list_2dcells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_utils.html#list_2dcells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.list_2dcells" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">list_2dcells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_utils.html#list_2dcells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.list_2dcells" title="Link to this definition"></a></dt>
 <dd><p>Returns list of all orthants in 2dim tree space.</p>
 <p>Each axis corresponding to an internal edge of 4-tree is labeled from 0 to 10.
 Each orthant in 2dim tree space are represented as <code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>, where <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> is the
@@ -718,14 +725,14 @@ label of axes.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.logconcave_density_estimate_1dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">logconcave_density_estimate_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_1dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">logconcave_density_estimate_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_1dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Log-concave density estimate object in 2dim tree space.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.logconcave_density_estimate_1dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_1dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_1dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>y</strong> (<em>numpy.ndarray</em>) – log-density at each sample point.</p></li>
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – coordinates of sample points.</p></li>
@@ -742,20 +749,20 @@ Defaults to False.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.logconcave_density_estimate_1dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_1dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_1dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <p>Currently, it only supports when <code class="docutils literal notranslate"><span class="pre">n_ort</span></code> = 3.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>coordinate</em><em> of </em><em>the point.</em>) – </p></li>
 <li><p><strong>cell</strong> (<em>orthant</em><em> of </em><em>the point.</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -765,14 +772,14 @@ Defaults to False.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.logconcave_density_estimate_2dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">logconcave_density_estimate_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_2dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">logconcave_density_estimate_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_2dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Log-concave density estimate object in 2dim tree space.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.logconcave_density_estimate_2dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_2dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_2dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>y</strong> (<em>numpy.ndarray</em>) – log-density at each sample point.</p></li>
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
@@ -783,10 +790,10 @@ Defaults to False.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.logconcave_density_estimate_2dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_2dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_lcmle.html#logconcave_density_estimate_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.logconcave_density_estimate_2dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x1</strong> (<em>float</em>) – First coordinate.</p></li>
 <li><p><strong>x2</strong> (<em>float</em>) – Second coordinate.</p></li>
@@ -795,10 +802,10 @@ Defaults to False.</p></li>
 cell1 should have a larger value than cell0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">(x1,x2)</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">(cell0,</span> <span class="pre">cell1)</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -808,16 +815,16 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.normal_1dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>normal-like density object in 1dim tree space.</p>
 <p>The density is proportional to exp(-d(x,mu)^2/sigma^2) for x in supported orthants.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_1dim.mu">
-<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.normal_1dim.mu" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.normal_1dim.mu" title="Link to this definition"></a></dt>
 <dd><p>Position of the center.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -825,10 +832,10 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_1dim.sigma">
-<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_1dim.sigma" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_1dim.sigma" title="Link to this definition"></a></dt>
 <dd><p>Variance-like parameter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -836,9 +843,9 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_1dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mu</strong> (<em>float</em>) – Position of the center.</p></li>
 <li><p><strong>sigma</strong> (<em>float</em>) – Variance-like parameter.</p></li>
@@ -849,19 +856,19 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_1dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>coordinate</em><em> of </em><em>the point.</em>) – </p></li>
 <li><p><strong>cell</strong> (<em>orthant</em><em> of </em><em>the point.</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -869,16 +876,16 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_1dim.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim.sample" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_1dim.sample" title="Link to this definition"></a></dt>
 <dd><p>Sample from the density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – sample size.</p></li>
 <li><p><strong>seed</strong> (<em>int</em>) – random seed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – Coordinates of sample points.</p></li>
 <li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – Orthants of sample points.</p></li>
@@ -892,16 +899,16 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_bend_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_bend_1dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>normal density object that bends at the origin on 1dim tree space or more general space of k-spiders.</p>
 <p>This density corresponds to the transition density of the Brownian motion on k-spider.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim.mu">
-<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.mu" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.mu" title="Link to this definition"></a></dt>
 <dd><p>Position of the starting point for Brownian motion.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -909,10 +916,10 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim.sigma">
-<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.sigma" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.sigma" title="Link to this definition"></a></dt>
 <dd><p>Variance-like parameter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -920,11 +927,11 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim.k">
-<span class="sig-name descname"><span class="pre">k</span></span><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.k" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">k</span></span><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.k" title="Link to this definition"></a></dt>
 <dd><p>Number of orthants. (Number of ‘spiders’.)
 In case of one dimensional tree space, <code class="docutils literal notranslate"><span class="pre">k</span></code> should be 3.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -932,9 +939,9 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mu</strong> (<em>float</em>) – Position of the starting point for Brownian motion.</p></li>
 <li><p><strong>sigma</strong> (<em>float</em>) – Variance-like parameter.</p></li>
@@ -947,19 +954,19 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>coordinate</em><em> of </em><em>the point.</em>) – </p></li>
 <li><p><strong>cell</strong> (<em>orthant</em><em> of </em><em>the point.</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the orthant <code class="docutils literal notranslate"><span class="pre">cell</span></code>.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -967,16 +974,16 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_bend_1dim.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.sample" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_onedim_dists.html#normal_bend_1dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_bend_1dim.sample" title="Link to this definition"></a></dt>
 <dd><p>Sample from the density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – sample size.</p></li>
 <li><p><strong>seed</strong> (<em>int</em>) – random seed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>x</strong> (<em>numpy.ndarray</em>) – Coordinates of sample points.</p></li>
 <li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – Orthants of sample points.</p></li>
@@ -990,15 +997,15 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.normal_centered_2dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_centered_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_centered_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Centered normal-like density in two dimensional tree space.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_centered_2dim.cells">
-<span class="sig-name descname"><span class="pre">cells</span></span><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.cells" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cells</span></span><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.cells" title="Link to this definition"></a></dt>
 <dd><p>supported orthants.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list of lists</p>
 </dd>
 </dl>
@@ -1006,11 +1013,11 @@ In case of one dimensional tree space, <code class="docutils literal notranslate
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_centered_2dim.sigma">
-<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.sigma" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.sigma" title="Link to this definition"></a></dt>
 <dd><p>variance-like parameter of the density.
 The density is proportional to exp(-d(x,0)^2/sigma^2) for x in supported orthants.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -1018,9 +1025,9 @@ The density is proportional to exp(-d(x,0)^2/sigma^2) for x in supported orthant
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_centered_2dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cells</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cells</strong> (<em>list</em><em> of </em><em>lists</em>) – supported orthants.</p></li>
 <li><p><strong>sigma</strong> (<em>float</em>) – variance-like parameter of the density.
@@ -1032,10 +1039,10 @@ The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</p></
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_centered_2dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x1</strong> (<em>float</em>) – First coordinate.</p></li>
 <li><p><strong>x2</strong> (<em>float</em>) – Second coordinate.</p></li>
@@ -1044,10 +1051,10 @@ The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</p></
 cell1 should have a larger value than cell0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point (x1,x2) in the orthant (cell0, cell1).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -1055,19 +1062,19 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_centered_2dim.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.sample" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_centered_2dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_centered_2dim.sample" title="Link to this definition"></a></dt>
 <dd><p>Sample from the density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – sample size.</p></li>
 <li><p><strong>seed</strong> (<em>int</em>) – random seed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>DataFrame containing sample points.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
 </dl>
@@ -1077,15 +1084,15 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_uncentered_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">normal_uncentered_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Uncentered normal-like density in two dimensional tree space.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim.cell">
-<span class="sig-name descname"><span class="pre">cell</span></span><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.cell" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cell</span></span><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.cell" title="Link to this definition"></a></dt>
 <dd><p>The orthant to which the center belongs.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list of length 2</p>
 </dd>
 </dl>
@@ -1093,10 +1100,10 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim.mu">
-<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.mu" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mu</span></span><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.mu" title="Link to this definition"></a></dt>
 <dd><p>The coordinate of the center point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -1104,11 +1111,11 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim.sigma">
-<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.sigma" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sigma</span></span><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.sigma" title="Link to this definition"></a></dt>
 <dd><p>variance-like parameter of the density.
 The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -1116,9 +1123,9 @@ The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cell</strong> (<em>list</em><em> of </em><em>length 2</em>) – The orthant to which the center belongs.</p></li>
 <li><p><strong>mu</strong> (<em>float</em>) – The coordinate of the center point.</p></li>
@@ -1131,10 +1138,10 @@ The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</p></
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim.pdf">
-<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.pdf" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim.pdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.pdf" title="Link to this definition"></a></dt>
 <dd><p>Returns the value of the density value at a point.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x1</strong> (<em>float</em>) – First coordinate.</p></li>
 <li><p><strong>x2</strong> (<em>float</em>) – Second coordinate.</p></li>
@@ -1143,10 +1150,10 @@ The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</p></
 cell1 should have a larger value than cell0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Density at the point (x1,x2) in the orthant (cell0, cell1).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -1154,19 +1161,19 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.normal_uncentered_2dim.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.sample" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_normal.html#normal_uncentered_2dim.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.normal_uncentered_2dim.sample" title="Link to this definition"></a></dt>
 <dd><p>Sample from the density.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – sample size.</p></li>
 <li><p><strong>seed</strong> (<em>int</em>) – random seed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>DataFrame containing sample points.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
 </dl>
@@ -1176,10 +1183,10 @@ cell1 should have a larger value than cell0.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.plot_density_2dim">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">plot_density_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_visualize.html#plot_density_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.plot_density_2dim" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">plot_density_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_visualize.html#plot_density_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.plot_density_2dim" title="Link to this definition"></a></dt>
 <dd><p>Heatmap of the density in 2dim tree space on each orthant.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>density</strong> (<em>2 dimensional density object</em>) – <p>Should be one of the followings:</p>
 <blockquote>
@@ -1197,10 +1204,10 @@ if numpy.ndarray is provided, then the length should be 15 (the number of orthan
 if numpy.ndarray is provided, then the length should be 15 (the number of orthants in 2dim tree space).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Figure of the plot.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>matplotlib.figure.Figure</p>
 </dd>
 </dl>
@@ -1208,19 +1215,19 @@ if numpy.ndarray is provided, then the length should be 15 (the number of orthan
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.plot_petersen">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">plot_petersen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_visualize.html#plot_petersen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.plot_petersen" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">plot_petersen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_visualize.html#plot_petersen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.plot_petersen" title="Link to this definition"></a></dt>
 <dd><p>Scatter plot points in 2dim tree space on petersen graph.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
 <li><p><strong>c</strong> (<em>None</em><em> or </em><em>numpy.ndarray</em>) – Colors for each sample point. Should be of the same length as <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Figure of the plot.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>matplotlib.figure.Figure</p>
 </dd>
 </dl>
@@ -1228,10 +1235,10 @@ if numpy.ndarray is provided, then the length should be 15 (the number of orthan
 
 <dl class="py function">
 <dt class="sig sig-object py" id="lcdtreespace.plot_scatter_2dim">
-<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_visualize.html#plot_scatter_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.plot_scatter_2dim" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">lcdtreespace.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_2dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_visualize.html#plot_scatter_2dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.plot_scatter_2dim" title="Link to this definition"></a></dt>
 <dd><p>Scatter plot points in 2dim tree space on each orthant.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
 <li><p><strong>xmax</strong> (<em>float</em><em> or </em><em>numpy.ndarray</em>) – Maximum value for x-axis and y-axis.
@@ -1241,10 +1248,10 @@ if numpy.ndarray is provided, then the length should be 15 (the number of orthan
 <li><p><strong>c</strong> (<em>None</em><em> or </em><em>numpy.ndarray</em>) – Colors for each sample point. Should be of the same length as <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Figure of the plot.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>matplotlib.figure.Figure</p>
 </dd>
 </dl>

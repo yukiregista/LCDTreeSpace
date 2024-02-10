@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lcdtreespace._kde &mdash; lcdtreespace  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -26,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> lcdtreespace
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            lcdtreespace
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -53,7 +58,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">lcdtreespace._kde</li>
       <li class="wy-breadcrumbs-aside">
@@ -72,6 +77,8 @@
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">def</span> <span class="nf">_geodesic_dist2d</span><span class="p">(</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="n">sample_coord2</span><span class="p">,</span> <span class="n">sample_angle</span><span class="p">,</span> <span class="n">start_index</span><span class="p">,</span> <span class="n">new_coord1</span><span class="p">,</span><span class="n">new_coord2</span><span class="p">,</span> <span class="n">new_angle</span><span class="p">,</span> <span class="n">cell_new</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">lenmat</span><span class="p">):</span>
     <span class="c1"># not efficient yet</span>
@@ -226,15 +233,25 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">geodesic_dists</span><span class="o">/</span><span class="n">bw</span><span class="p">)</span><span class="o">**</span><span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="n">bhvc</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="kernel_density_estimate_2dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim">[docs]</a><span class="k">class</span> <span class="nc">kernel_density_estimate_2dim</span><span class="p">():</span>
+<div class="viewcode-block" id="kernel_density_estimate_2dim">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim">[docs]</a>
+<span class="k">class</span> <span class="nc">kernel_density_estimate_2dim</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Kernel density estimate object in 2dim tree space.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="kernel_density_estimate_2dim.__init__"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="kernel_density_estimate_2dim.__init__">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">bandwidth</span><span class="o">=</span><span class="s2">&quot;nn&quot;</span><span class="p">,</span><span class="n">nn_prop</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        X : pandas.DataFrame</span>
 <span class="sd">            Sample points. See :py:func:`lcmle_2dim` for the required format.</span>
+<span class="sd">        bandwidth : float or string</span>
+<span class="sd">            If float, bandwidth. </span>
+<span class="sd">            If string, it should be one of the followings:</span>
+<span class="sd">            - &quot;nn&quot;: nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.</span>
+<span class="sd">        nn_prop : float</span>
+<span class="sd">            Quantile used for &quot;nn&quot; approach. Ignored if ``bandwidth`` is not &quot;nn&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -242,11 +259,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">start_index</span> <span class="o">=</span> <span class="n">get_start_indices</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="n">tuple_2dcells</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span> <span class="o">=</span> <span class="n">b_to_b_lenmat</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_angle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_index</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">)</span>
+        <span class="c1">#self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">bandwidth</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;bandwidth has to be positive&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">bandwidth</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">bandwidth</span> <span class="o">==</span> <span class="s2">&quot;nn&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_angle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_index</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="n">nn_prop</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Invalid bandwidth argument.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bhv_c</span> <span class="o">=</span> <span class="n">_bhv_exact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="kernel_density_estimate_2dim.pdf"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">cell0</span><span class="p">,</span><span class="n">cell1</span><span class="p">):</span>
+
+<div class="viewcode-block" id="kernel_density_estimate_2dim.pdf">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.pdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">cell0</span><span class="p">,</span><span class="n">cell1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the value of the density value at a point.</span>
 
 <span class="sd">        Parameters</span>
@@ -269,14 +297,16 @@
         <span class="n">cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">cell0</span><span class="p">,</span> <span class="n">cell1</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">])</span>
         <span class="n">estimated_density</span> <span class="o">=</span> <span class="n">_kernel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_coord2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_angle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lenmat</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">,</span> <span class="n">bhvc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bhv_c</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">estimated_density</span></div></div>
+        <span class="k">return</span> <span class="n">estimated_density</span></div>
+</div>
+
 
 <span class="k">def</span> <span class="nf">_create_distance_mat_1dim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">n1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ort</span><span class="o">==</span><span class="mi">0</span><span class="p">]);</span> <span class="n">n2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">ort</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">Dmat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))],</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">bisect</span><span class="p">([</span><span class="n">n1</span><span class="p">,</span><span class="n">n2</span><span class="p">],</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">bisect</span><span class="p">([</span><span class="n">n1</span><span class="p">,</span><span class="n">n2</span><span class="p">],</span><span class="n">b</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bisect</span><span class="p">([</span><span class="n">n1</span><span class="p">,</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="p">],</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">bisect</span><span class="p">([</span><span class="n">n1</span><span class="p">,</span><span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="p">],</span><span class="n">b</span><span class="p">):</span>
             <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">dist</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
@@ -284,10 +314,14 @@
     <span class="k">return</span> <span class="n">Dmat</span>
 
 
-<div class="viewcode-block" id="kernel_density_estimate_1dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim">[docs]</a><span class="k">class</span> <span class="nc">kernel_density_estimate_1dim</span><span class="p">():</span>
+<div class="viewcode-block" id="kernel_density_estimate_1dim">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim">[docs]</a>
+<span class="k">class</span> <span class="nc">kernel_density_estimate_1dim</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Kernel density estimate object in 1dim tree space or more general space of k-spider.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="kernel_density_estimate_1dim.__init__"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">,</span> <span class="n">n_ort</span><span class="p">):</span>
+<div class="viewcode-block" id="kernel_density_estimate_1dim.__init__">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">,</span> <span class="n">n_ort</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="s2">&quot;nn&quot;</span><span class="p">,</span> <span class="n">nn_prop</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -299,13 +333,29 @@
 <span class="sd">        n_ort : int</span>
 <span class="sd">            Number of orthants. (Number of &#39;spiders&#39;.)</span>
 <span class="sd">            In case of one dimensional tree space, ``n_ort`` should be 3.</span>
+<span class="sd">        bandwidth : float or string</span>
+<span class="sd">            If float, bandwidth. </span>
+<span class="sd">            If string, it should be one of the followings:</span>
+<span class="sd">            - &quot;nn&quot;: nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.</span>
+<span class="sd">        nn_prop : float</span>
+<span class="sd">            Quantile used for &quot;nn&quot; approach. Ignored if ``bandwidth`` is not &quot;nn&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ort</span> <span class="o">=</span>  <span class="n">ort</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_ort</span> <span class="o">=</span> <span class="n">n_ort</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat_1dim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">)</span></div>
-<div class="viewcode-block" id="kernel_density_estimate_1dim.pdf"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">bandwidth</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;bandwidth has to be positive&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">bandwidth</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">bandwidth</span> <span class="o">==</span> <span class="s2">&quot;nn&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span> <span class="o">=</span> <span class="n">_create_distance_mat_1dim</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bw</span> <span class="o">=</span> <span class="n">_bw_nn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Dmat</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="n">nn_prop</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Invalid bandwidth argument.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="kernel_density_estimate_1dim.pdf">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.pdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the value of the density value at a point.</span>
 
 <span class="sd">        Currently, it only supports when ``n_ort`` = 3.</span>
@@ -333,8 +383,12 @@
             <span class="n">dist_x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">x</span>
             <span class="n">dist_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
         <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">dist_x0</span><span class="p">,</span> <span class="n">dist_x1</span><span class="p">,</span> <span class="n">dist_x2</span><span class="p">))</span>
-        <span class="n">bhvc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">))</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dists</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">bhvc</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div></div>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="n">bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">bw</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ort</span><span class="o">==</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="n">bhvc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">bw</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">xs</span><span class="o">/</span> <span class="n">bw</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dists</span><span class="o">/</span><span class="n">bw</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">bhvc</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
+</div>
+
 </pre></div>
 
            </div>

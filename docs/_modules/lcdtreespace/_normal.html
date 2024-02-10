@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lcdtreespace._normal &mdash; lcdtreespace  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -26,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> lcdtreespace
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            lcdtreespace
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -53,7 +58,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">lcdtreespace._normal</li>
       <li class="wy-breadcrumbs-aside">
@@ -74,7 +79,9 @@
 <span class="kn">from</span> <span class="nn">._kde</span> <span class="kn">import</span> <span class="n">_geodesic_dist2d2</span>
 
 
-<div class="viewcode-block" id="normal_centered_2dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim">[docs]</a><span class="k">class</span> <span class="nc">normal_centered_2dim</span><span class="p">():</span>
+<div class="viewcode-block" id="normal_centered_2dim">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim">[docs]</a>
+<span class="k">class</span> <span class="nc">normal_centered_2dim</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Centered normal-like density in two dimensional tree space.</span>
 
 <span class="sd">    Attributes</span>
@@ -85,7 +92,9 @@
 <span class="sd">        variance-like parameter of the density.</span>
 <span class="sd">        The density is proportional to exp(-d(x,0)^2/sigma^2) for x in supported orthants.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="normal_centered_2dim.__init__"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">cells</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+<div class="viewcode-block" id="normal_centered_2dim.__init__">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">cells</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        parameters</span>
 <span class="sd">        ----------</span>
@@ -99,7 +108,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuple_cells</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span></div>
-<div class="viewcode-block" id="normal_centered_2dim.sample"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="normal_centered_2dim.sample">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim.sample">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Sample from the density.</span>
 
 <span class="sd">        parameters</span>
@@ -127,7 +139,10 @@
         <span class="n">sort_ind</span> <span class="o">=</span> <span class="n">argsort_by_orthants</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sort_ind</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">&quot;edge1&quot;</span><span class="p">:</span><span class="s2">&quot;int32&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">:</span><span class="s2">&quot;int32&quot;</span><span class="p">})</span></div>
-<div class="viewcode-block" id="normal_centered_2dim.pdf"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">cell0</span><span class="p">,</span><span class="n">cell1</span><span class="p">):</span>
+
+<div class="viewcode-block" id="normal_centered_2dim.pdf">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_centered_2dim.pdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">cell0</span><span class="p">,</span><span class="n">cell1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the value of the density value at a point.</span>
 
 <span class="sd">        Parameters</span>
@@ -150,9 +165,13 @@
         <span class="k">if</span> <span class="p">(</span><span class="n">cell0</span><span class="p">,</span> <span class="n">cell1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuple_cells</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">]))</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cell</span></div></div>
+            <span class="k">return</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">]))</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cell</span></div>
+</div>
 
-<div class="viewcode-block" id="normal_uncentered_2dim"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim">[docs]</a><span class="k">class</span> <span class="nc">normal_uncentered_2dim</span><span class="p">():</span>
+
+<div class="viewcode-block" id="normal_uncentered_2dim">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim">[docs]</a>
+<span class="k">class</span> <span class="nc">normal_uncentered_2dim</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Uncentered normal-like density in two dimensional tree space.</span>
 
 <span class="sd">    Attributes</span>
@@ -165,7 +184,9 @@
 <span class="sd">        variance-like parameter of the density.</span>
 <span class="sd">        The density is proportional to exp(-d(x,0)^2) for x in supported orthants.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="normal_uncentered_2dim.__init__"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+<div class="viewcode-block" id="normal_uncentered_2dim.__init__">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -192,7 +213,10 @@
             <span class="c1">#self.norm = np.array([self.c_a, self.c_b1, self.c_b2, self.c_c, self.c_d])</span>
             <span class="c1">#self.norm = self.norm/np.sum(self.norm)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">c_a</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_b1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_b2</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_c</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_d</span><span class="p">])</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">all</span></div>
-<div class="viewcode-block" id="normal_uncentered_2dim.sample"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<div class="viewcode-block" id="normal_uncentered_2dim.sample">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim.sample">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Sample from the density.</span>
 
 <span class="sd">        parameters</span>
@@ -268,7 +292,10 @@
         <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sort_ind</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">&quot;edge1&quot;</span><span class="p">:</span><span class="s2">&quot;int32&quot;</span><span class="p">,</span> <span class="s2">&quot;edge2&quot;</span><span class="p">:</span><span class="s2">&quot;int32&quot;</span><span class="p">})</span></div>
-<div class="viewcode-block" id="normal_uncentered_2dim.pdf"><a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim.pdf">[docs]</a>    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">cell0</span><span class="p">,</span> <span class="n">cell1</span><span class="p">):</span>
+
+<div class="viewcode-block" id="normal_uncentered_2dim.pdf">
+<a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.normal_uncentered_2dim.pdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">cell0</span><span class="p">,</span> <span class="n">cell1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns the value of the density value at a point.</span>
 
 <span class="sd">        Parameters</span>
@@ -299,7 +326,9 @@
         <span class="c1">#px_unnormalized = np.exp(-geodesic_distance_2d(center, point)**2/(2*self.sigma**2))</span>
         <span class="n">dd</span> <span class="o">=</span> <span class="n">_geodesic_dist2d2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">x1</span><span class="p">),</span> <span class="n">tuple_2dcells</span><span class="p">(),</span> <span class="n">b_to_b_lenmat</span><span class="p">())</span>
         <span class="n">px_unnormalized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dd</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">px_unnormalized</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span></div></div>
+        <span class="k">return</span> <span class="n">px_unnormalized</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span></div>
+</div>
+
 
 
 
