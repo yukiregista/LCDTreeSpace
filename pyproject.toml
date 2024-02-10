@@ -19,6 +19,11 @@ classifiers = [
 ]
 dependencies = ["numpy", "pandas", "scipy", "matplotlib", "scikit-learn"]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
 [project.urls]
 "Homepage" = "https://github.com/yukiregista/LCDTreeSpace"
 #"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
