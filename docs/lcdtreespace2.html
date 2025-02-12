@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -472,32 +473,24 @@ Defaults to 1e-4.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_1dim.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_ort</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias_free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_1dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_1dim.__init__" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><dl>
-<dt>x<span class="classifier">numpy.ndarray</span></dt><dd><p>coordinates of sample points.</p>
-</dd>
-<dt>ort<span class="classifier">numpy.ndarray</span></dt><dd><p>orthants that sample points belong to.
-Should have same length as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
-</dd>
-<dt>n_ort<span class="classifier">int</span></dt><dd><p>Number of orthants. (Number of ‘spiders’.)
-In case of one dimensional tree space, <code class="docutils literal notranslate"><span class="pre">n_ort</span></code> should be 3.</p>
-</dd>
-<dt>bandwidth<span class="classifier">float or string</span></dt><dd><p>If float, bandwidth.
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>numpy.ndarray</em>) – coordinates of sample points.</p></li>
+<li><p><strong>ort</strong> (<em>numpy.ndarray</em>) – orthants that sample points belong to.
+Should have same length as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+<li><p><strong>n_ort</strong> (<em>int</em>) – Number of orthants. (Number of ‘spiders’.)
+In case of one dimensional tree space, <code class="docutils literal notranslate"><span class="pre">n_ort</span></code> should be 3.</p></li>
+<li><p><strong>bandwidth</strong> (<em>float</em><em> or </em><em>string</em>) – <p>If float, bandwidth.
 If string, it should be one of the followings:</p>
-<blockquote>
-<div><p>“nn”: nearest neighbor approach. Bandwidth is set to the <code class="docutils literal notranslate"><span class="pre">nn_prop</span></code> quantile of distances to other points. Can only be used with bias_free=False currently.
-“scott-like”: $n^{-1/5} * s$ where $s = sqrt{</p>
-</div></blockquote>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>rac{sum_{1leq i&lt; j leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.</dt><dd><dl class="simple">
-<dt>nn_prop<span class="classifier">float</span></dt><dd><p>Quantile used for “nn” approach. Ignored if <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is not “nn”.</p>
-</dd>
-<dt>bias_free: bool</dt><dd><p>Whether to use bias-free version of the kernel density estimate, by default False.</p>
-</dd>
-</dl>
+<ul>
+<li><p>”nn”: nearest neighbor approach. Bandwidth is set to the <code class="docutils literal notranslate"><span class="pre">nn_prop</span></code> quantile of distances to other points. Can only be used with bias_free=False currently.</p></li>
+<li><p>”scott-like”: <span class="math notranslate nohighlight">\(n^{-1/5} \times s\)</span> where <span class="math notranslate nohighlight">\(s = \sqrt{\frac{\sum_{1\leq i&lt; j \leq n} d(x_i, x_j)^2}{n^2}}\)</span> is the root mean squared pairwise distance.</p></li>
+</ul>
+</p></li>
+<li><p><strong>nn_prop</strong> (<em>float</em>) – Quantile used for “nn” approach. Ignored if <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is not ‘nn’.</p></li>
+<li><p><strong>bias_free</strong> (<em>bool</em>) – Whether to use bias-free version of the kernel density estimate, by default False.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -533,26 +526,20 @@ If string, it should be one of the followings:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="lcdtreespace.kernel_density_estimate_2dim.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn_prop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias_free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lcdtreespace/_kde.html#kernel_density_estimate_2dim.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lcdtreespace.kernel_density_estimate_2dim.__init__" title="Link to this definition"></a></dt>
-<dd><blockquote>
-<div><dl>
-<dt>X<span class="classifier">pandas.DataFrame</span></dt><dd><p>Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p>
-</dd>
-<dt>bandwidth<span class="classifier">float or string</span></dt><dd><p>If float, bandwidth.
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – Sample points. See <a class="reference internal" href="#lcdtreespace.lcmle_2dim" title="lcdtreespace.lcmle_2dim"><code class="xref py py-func docutils literal notranslate"><span class="pre">lcmle_2dim()</span></code></a> for the required format.</p></li>
+<li><p><strong>bandwidth</strong> (<em>float</em><em> or </em><em>string</em>) – <p>If float, bandwidth.
 If string, it should be one of the followings:</p>
-<blockquote>
-<div><p>“nn”: nearest neighbor approach. Bandwidth is set to the <code class="docutils literal notranslate"><span class="pre">nn_prop</span></code> quantile of distances to other points.
-“scott-like”: $n^{-1/6} * s$ where $s = sqrt{</p>
-</div></blockquote>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>rac{sum_{1leq i&lt; j leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.</dt><dd><dl class="simple">
-<dt>nn_prop<span class="classifier">float</span></dt><dd><p>Quantile used for “nn” approach. Ignored if <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is not “nn”.</p>
-</dd>
-<dt>bias_free: bool</dt><dd><p>Whether to use bias-free version of the kernel density estimate, by default False.</p>
-</dd>
-</dl>
+<ul>
+<li><p>’nn’: nearest neighbor approach. Bandwidth is set to the <code class="docutils literal notranslate"><span class="pre">nn_prop</span></code> quantile of distances to other points.</p></li>
+<li><p>’scott-like’: <span class="math notranslate nohighlight">\(n^{-1/6} \times s\)</span> where <span class="math notranslate nohighlight">\(s = \sqrt{\frac{\sum_{1\leq i&lt; j \leq n} d(x_i, x_j)^2}{n^2}}\)</span> is the root mean squared pairwise distance.</p></li>
+</ul>
+</p></li>
+<li><p><strong>nn_prop</strong> (<em>float</em>) – Quantile used for “nn” approach. Ignored if <code class="docutils literal notranslate"><span class="pre">bandwidth</span></code> is not ‘nn’.</p></li>
+<li><p><strong>bias_free</strong> (<em>bool</em>) – Whether to use bias-free version of the kernel density estimate, by default False.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -680,13 +667,11 @@ In case of one dimensional tree space, n_ort should be 3.</p></li>
 Defaults to False.</p></li>
 <li><p><strong>initial</strong> (<em>str</em><em> or </em><em>nd.array</em><em>, </em><em>optional</em>) – <p>How to set initial values of optimized parameters.
 Should be one of the followings:</p>
-<blockquote>
-<div><ul>
+<ul>
 <li><p>’random’ : initial value is set randomly.random numbers can be controled by setting random_seed argument.</p></li>
 <li><p>numpy.ndarray : used as initial value. The length of the array should be the same size as x and ort.</p></li>
 </ul>
-</div></blockquote>
-<p>Defaults to “random”.</p>
+<p>Defaults to ‘random’.</p>
 </p></li>
 <li><p><strong>random_seed</strong> (<em>None</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – Random seed to use when initial is “random”.
 Defaults to None.</p></li>

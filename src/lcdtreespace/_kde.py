@@ -165,7 +165,7 @@ class kernel_density_estimate_2dim():
     """Kernel density estimate object in 2dim tree space.
     """
     def __init__(self,X,bandwidth="nn",nn_prop=0.2,bias_free=False):
-        """
+        r"""
         Parameters
         ----------
         X : pandas.DataFrame
@@ -173,10 +173,12 @@ class kernel_density_estimate_2dim():
         bandwidth : float or string
             If float, bandwidth. 
             If string, it should be one of the followings:
-                "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.
-                "scott-like": $n^{-1/6} * s$ where $s = \sqrt{\frac{\sum_{1\leq i< j \leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.
+            
+            - 'nn': nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.
+            - 'scott-like': :math:`n^{-1/6} \times s` where :math:`s = \sqrt{\frac{\sum_{1\leq i< j \leq n} d(x_i, x_j)^2}{n^2}}` is the root mean squared pairwise distance.
+            
         nn_prop : float
-            Quantile used for "nn" approach. Ignored if ``bandwidth`` is not "nn".
+            Quantile used for "nn" approach. Ignored if ``bandwidth`` is not 'nn'.
         bias_free: bool
             Whether to use bias-free version of the kernel density estimate, by default False.
         """
@@ -251,7 +253,7 @@ class kernel_density_estimate_1dim():
     """Kernel density estimate object in 1dim tree space or more general space of k-spider.
     """
     def __init__(self, x, ort, n_ort, bandwidth="nn", nn_prop = 0.2, bias_free = False):
-        """
+        r"""
         Parameters
         ----------
         x : numpy.ndarray
@@ -265,10 +267,12 @@ class kernel_density_estimate_1dim():
         bandwidth : float or string
             If float, bandwidth. 
             If string, it should be one of the followings:
-                "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points. Can only be used with bias_free=False currently.
-                "scott-like": $n^{-1/5} * s$ where $s = \sqrt{\frac{\sum_{1\leq i< j \leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.
+            
+            - "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points. Can only be used with bias_free=False currently.
+            - "scott-like": :math:`n^{-1/5} \times s` where :math:`s = \sqrt{\frac{\sum_{1\leq i< j \leq n} d(x_i, x_j)^2}{n^2}}` is the root mean squared pairwise distance.
+            
         nn_prop : float
-            Quantile used for "nn" approach. Ignored if ``bandwidth`` is not "nn".
+            Quantile used for "nn" approach. Ignored if ``bandwidth`` is not 'nn'.
         bias_free: bool
             Whether to use bias-free version of the kernel density estimate, by default False.
         """

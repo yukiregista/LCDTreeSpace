@@ -239,7 +239,7 @@
 <div class="viewcode-block" id="kernel_density_estimate_2dim.__init__">
 <a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_2dim.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">bandwidth</span><span class="o">=</span><span class="s2">&quot;nn&quot;</span><span class="p">,</span><span class="n">nn_prop</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">bias_free</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        X : pandas.DataFrame</span>
@@ -247,10 +247,12 @@
 <span class="sd">        bandwidth : float or string</span>
 <span class="sd">            If float, bandwidth. </span>
 <span class="sd">            If string, it should be one of the followings:</span>
-<span class="sd">                &quot;nn&quot;: nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.</span>
-<span class="sd">                &quot;scott-like&quot;: $n^{-1/6} * s$ where $s = \sqrt{\frac{\sum_{1\leq i&lt; j \leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.</span>
+<span class="sd">            </span>
+<span class="sd">            - &#39;nn&#39;: nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.</span>
+<span class="sd">            - &#39;scott-like&#39;: :math:`n^{-1/6} \times s` where :math:`s = \sqrt{\frac{\sum_{1\leq i&lt; j \leq n} d(x_i, x_j)^2}{n^2}}` is the root mean squared pairwise distance.</span>
+<span class="sd">            </span>
 <span class="sd">        nn_prop : float</span>
-<span class="sd">            Quantile used for &quot;nn&quot; approach. Ignored if ``bandwidth`` is not &quot;nn&quot;.</span>
+<span class="sd">            Quantile used for &quot;nn&quot; approach. Ignored if ``bandwidth`` is not &#39;nn&#39;.</span>
 <span class="sd">        bias_free: bool</span>
 <span class="sd">            Whether to use bias-free version of the kernel density estimate, by default False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -334,7 +336,7 @@
 <div class="viewcode-block" id="kernel_density_estimate_1dim.__init__">
 <a class="viewcode-back" href="../../lcdtreespace2.html#lcdtreespace.kernel_density_estimate_1dim.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ort</span><span class="p">,</span> <span class="n">n_ort</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="s2">&quot;nn&quot;</span><span class="p">,</span> <span class="n">nn_prop</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">bias_free</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        x : numpy.ndarray</span>
@@ -348,10 +350,12 @@
 <span class="sd">        bandwidth : float or string</span>
 <span class="sd">            If float, bandwidth. </span>
 <span class="sd">            If string, it should be one of the followings:</span>
-<span class="sd">                &quot;nn&quot;: nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points. Can only be used with bias_free=False currently.</span>
-<span class="sd">                &quot;scott-like&quot;: $n^{-1/5} * s$ where $s = \sqrt{\frac{\sum_{1\leq i&lt; j \leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.</span>
+<span class="sd">            </span>
+<span class="sd">            - &quot;nn&quot;: nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points. Can only be used with bias_free=False currently.</span>
+<span class="sd">            - &quot;scott-like&quot;: :math:`n^{-1/5} \times s` where :math:`s = \sqrt{\frac{\sum_{1\leq i&lt; j \leq n} d(x_i, x_j)^2}{n^2}}` is the root mean squared pairwise distance.</span>
+<span class="sd">            </span>
 <span class="sd">        nn_prop : float</span>
-<span class="sd">            Quantile used for &quot;nn&quot; approach. Ignored if ``bandwidth`` is not &quot;nn&quot;.</span>
+<span class="sd">            Quantile used for &quot;nn&quot; approach. Ignored if ``bandwidth`` is not &#39;nn&#39;.</span>
 <span class="sd">        bias_free: bool</span>
 <span class="sd">            Whether to use bias-free version of the kernel density estimate, by default False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
