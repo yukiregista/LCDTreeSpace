@@ -164,7 +164,7 @@ def _kernel(x, cell, sample_coord1, sample_coord2, sample_angle, start_index, ce
 class kernel_density_estimate_2dim():
     """Kernel density estimate object in 2dim tree space.
     """
-    def __init__(self,X,bandwidth="nn",nn_prop=0.2):
+    def __init__(self,X,bandwidth="nn",nn_prop=0.2,bias_free=False):
         """
         Parameters
         ----------
@@ -174,8 +174,11 @@ class kernel_density_estimate_2dim():
             If float, bandwidth. 
             If string, it should be one of the followings:
                 "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.
+                "scott-like": $n^{-1/6} * s$ where $s = \sqrt{\frac{\sum_{1\leq i< j \leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.
         nn_prop : float
             Quantile used for "nn" approach. Ignored if ``bandwidth`` is not "nn".
+        bias_free: bool
+            Whether to use bias-free version of the kernel density estimate, by default False.
         """
         self.sample_coord1 = X['x1'].values
         self.sample_coord2 = X['x2'].values
@@ -183,14 +186,21 @@ class kernel_density_estimate_2dim():
         self.start_index = get_start_indices(X)
         self.cells = tuple_2dcells()
         self.lenmat = b_to_b_lenmat()
+        self.bias_free = bias_free
         #self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)
         if isinstance(bandwidth, numbers.Number):
             assert bandwidth>0, "bandwidth has to be positive"
             self.bw = np.array([bandwidth for i in range(X.shape[0])])
         elif isinstance(bandwidth, str):
             if bandwidth == "nn":
+                if bias_free:
+                    sys.exit("bias_free=True and bandwidth=nn can't be used simultaneously.")
                 self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)
                 self.bw = _bw_nn(self.Dmat, prop=nn_prop)
+            elif bandwidth == "scott-like":
+                self.Dmat = _create_distance_mat(self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index,self.cells, self.lenmat)
+                bw_const = np.sqrt( np.sum(self.Dmat**2) / (2 * len(self.Dmat)**2) ) * (len(self.Dmat)**(-1/6))
+                self.bw = np.array([bw_const for _ in range(X.shape[0])])
             else:
                 sys.exit("Invalid bandwidth argument.")
         self.bhv_c = _bhv_exact(self.sample_coord1,self.sample_coord2, self.bw)
@@ -217,7 +227,11 @@ class kernel_density_estimate_2dim():
         """
         cell = (cell0, cell1)
         x = np.array([x1,x2])
-        estimated_density = _kernel(x, cell, self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index, self.cells, self.lenmat, bw=self.bw, bhvc = self.bhv_c)
+        if self.bias_free:
+            bhvc = _bhv_exact(np.array([x1]),np.array([x2]), self.bw[:1])
+            estimated_density = _kernel(x, cell, self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index, self.cells, self.lenmat, bw=self.bw, bhvc = bhvc)
+        else:
+            estimated_density = _kernel(x, cell, self.sample_coord1, self.sample_coord2, self.sample_angle, self.start_index, self.cells, self.lenmat, bw=self.bw, bhvc = self.bhv_c)
         return estimated_density
 
 def _create_distance_mat_1dim(x, ort):
@@ -236,7 +250,7 @@ def _create_distance_mat_1dim(x, ort):
 class kernel_density_estimate_1dim():
     """Kernel density estimate object in 1dim tree space or more general space of k-spider.
     """
-    def __init__(self, x, ort, n_ort, bandwidth="nn", nn_prop = 0.2):
+    def __init__(self, x, ort, n_ort, bandwidth="nn", nn_prop = 0.2, bias_free = False):
         """
         Parameters
         ----------
@@ -251,20 +265,30 @@ class kernel_density_estimate_1dim():
         bandwidth : float or string
             If float, bandwidth. 
             If string, it should be one of the followings:
-                "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points.
+                "nn": nearest neighbor approach. Bandwidth is set to the ``nn_prop`` quantile of distances to other points. Can only be used with bias_free=False currently.
+                "scott-like": $n^{-1/5} * s$ where $s = \sqrt{\frac{\sum_{1\leq i< j \leq n} d(x_i, x_j)^2|}{n^2}}$ is the root mean squared pairwise distance.
         nn_prop : float
             Quantile used for "nn" approach. Ignored if ``bandwidth`` is not "nn".
+        bias_free: bool
+            Whether to use bias-free version of the kernel density estimate, by default False.
         """
         self.x = x
         self.ort =  ort
         self.n_ort = n_ort
+        self.bias_free = bias_free
         if isinstance(bandwidth, numbers.Number):
             assert bandwidth>0, "bandwidth has to be positive"
             self.bw = np.array([bandwidth for i in range(len(x))])
         elif isinstance(bandwidth, str):
             if bandwidth == "nn":
+                if bias_free:
+                    sys.exit("bias_free=True and bandwidth=nn can't be used simultaneously.")
                 self.Dmat = _create_distance_mat_1dim(x, ort)
                 self.bw = _bw_nn(self.Dmat, prop=nn_prop)
+            elif bandwidth == "scott-like":
+                self.Dmat = _create_distance_mat_1dim(x, ort)
+                bw_const = np.sqrt( np.sum(self.Dmat**2) / (2 * len(x)**2) ) * (len(x)**(-1/5))
+                self.bw = np.array([bw_const for _ in range(len(x))])
             else:
                 sys.exit("Invalid bandwidth argument.")
     def pdf(self, x, cell):
@@ -297,5 +321,8 @@ class kernel_density_estimate_1dim():
         dists = np.concatenate((dist_x0, dist_x1, dist_x2))
         xs = np.concatenate((self.x[self.ort==0], self.x[self.ort==1], self.x[self.ort==2]))
         bw = np.concatenate((self.bw[self.ort==0], self.bw[self.ort==1], self.bw[self.ort==2]))
-        bhvc = np.sqrt(2 * np.pi)*bw*(1 + stats.norm.cdf(-xs/ bw))
+        if self.bias_free:
+            bhvc = np.sqrt(2 * np.pi)*bw*(1 + stats.norm.cdf(-x/ bw)) # use normalizing constant at the density point
+        else:
+            bhvc = np.sqrt(2 * np.pi)*bw*(1 + stats.norm.cdf(-xs/ bw))
         return (np.exp(-np.abs(dists/bw)**2/2) / bhvc).mean()

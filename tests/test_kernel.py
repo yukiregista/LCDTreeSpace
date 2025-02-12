@@ -52,3 +52,43 @@ def test_kernel_density_2dim():
     assert np.abs(integ - 1) < 1e-3
     
 
+def test_bias_1dim():
+    size = 1000
+    true_dens = normal_1dim(1,1)
+    true_origin_val = true_dens.pdf(0, 0)
+    
+    origin_pdf_vals = list()
+    origin_pdf_vals_bias = list()
+    
+    for i in range(10):
+        print(i, flush=True)
+        x,ort = true_dens.sample(size)
+        # bias-free ver
+        dens = kernel_density_estimate_1dim(x, ort, 3, bandwidth="scott-like", bias_free=True)
+        origin_pdf_vals.append(dens.pdf(0,0))
+        
+        # bias ver
+        dens2 = kernel_density_estimate_1dim(x, ort, 3, bandwidth="scott-like", bias_free=False)
+        origin_pdf_vals_bias.append(dens2.pdf(0,0))
+
+
+    print(f"true value: {true_origin_val}")
+    print(f"bias-free kde estimate mean: {np.mean(origin_pdf_vals)}")
+    print(f"biased kde estimate mean: {np.mean(origin_pdf_vals_bias)}")
+    print(f"theoretical biased kde value: {true_origin_val * 3 * np.log(3/2)}")
+    
+def test_bias_2dim():
+    size = 10000
+    true_dens = normal_uncentered_2dim([0,1], np.array([0.5,0.5]), 1)
+    X = true_dens.sample(size)
+
+    # bias_free_ver
+    dens = kernel_density_estimate_2dim(X, bandwidth="scott-like", bias_free=True)
+    # bias ver
+    dens2 = kernel_density_estimate_2dim(X, bandwidth="scott-like", bias_free=False)
+    
+    print(f"true value: {true_dens.pdf(0,0,0,1)}")
+    print(f"bias-free kde estimate mean: {dens.pdf(0,0,0,1)}")
+    print(f"biased kde estimate mean: {dens2.pdf(0,0,0,1)}")
+
+    
