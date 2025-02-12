@@ -193,9 +193,11 @@ def lcmle_1dim(x,ort,n_ort, bend=False, initial = 'random', random_seed = None,p
     initial : str or nd.array, optional
         How to set initial values of optimized parameters.
         Should be one of the followings:
-            - 'random' : initial value is set randomly.random numbers can be controled by setting random_seed argument.
-            - numpy.ndarray : used as initial value. The length of the array should be the same size as x and ort.
-        Defaults to "random".
+        
+        - 'random' : initial value is set randomly.random numbers can be controled by setting random_seed argument.
+        - numpy.ndarray : used as initial value. The length of the array should be the same size as x and ort.
+        
+        Defaults to 'random'.
     random_seed : None or float, optional
         Random seed to use when initial is "random".
         Defaults to None.
@@ -212,31 +214,6 @@ def lcmle_1dim(x,ort,n_ort, bend=False, initial = 'random', random_seed = None,p
         Optimal parameter
 
     """
-
-    '''Calculates one dimensional log-concave m.l.e.
-
-    Args:
-        x (nd.array): coordinates of sample points.
-        ort (nd.array): orthants that sample points belong to.
-            Should have same length as x.
-        n_ort (int): number of orthants.
-            In case of one dimensional tree space, n_ort should be 3.
-        bend (bool, optional): Indicator for allowing bend at the origin point.
-            Defaults to False.
-        initial (str or nd.array, optional): How to set initial values of optimized parameters.
-            Should be one of the followings:
-                "random" : initial value is set randomly.
-                    random numbers can be controled by setting random_seed argument.
-                nd.array : used as initial value.
-                    The length of the array should be the same size as x and ort.
-            Defaults to "random".
-        random_seed (None or float, optional): Random seed to use when initial is "random".
-            Defaults to None.
-        print_objective (bool, optional): Whether to show objective values of each run.
-            Defaults to False.
-        runs (int, optional): Number of optimization runs.
-            Defaults to 5.
-    '''
     n = len(x)
 
     if initial == 'random':
